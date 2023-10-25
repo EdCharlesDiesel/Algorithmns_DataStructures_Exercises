@@ -9,6 +9,8 @@
     {
         public static string Longest(string arrayOne, string arrayTwo)
         {
+
+      
             return string.Concat((arrayOne + arrayTwo).Distinct().OrderBy(x => x));
         }
 
@@ -42,5 +44,7 @@
             string res = string.Join("", lstr);
             return res;
         }
+
+
     }
 }
