@@ -1,1 +1,1 @@
-# AlgorithmnsExercises
+# Algorithmns_DataStructures_Exercises
