@@ -37,9 +37,13 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Algorithmns", "Algorithmns"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Searching Algorithmns", "Searching Algorithmns", "{FA8DBB87-3A15-48D6-967F-8563D952F4F5}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SearchingAlgorithmns", "SearchingAlgorithmns\SearchingAlgorithmns.csproj", "{578CC528-EF82-4D6F-B995-CB0B56E93D28}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SearchingAlgorithmns", "SearchingAlgorithmns\SearchingAlgorithmns.csproj", "{578CC528-EF82-4D6F-B995-CB0B56E93D28}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SearchingAlgorithmns.Tests", "SearchingAlgorithmns.Tests\SearchingAlgorithmns.Tests.csproj", "{73A661EF-DBC9-49C7-B316-481CCF3535E7}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SearchingAlgorithmns.Tests", "SearchingAlgorithmns.Tests\SearchingAlgorithmns.Tests.csproj", "{73A661EF-DBC9-49C7-B316-481CCF3535E7}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BinarySeachIteratively", "BinarySeachIteratively\BinarySeachIteratively.csproj", "{866B380F-B0DA-4B1C-B00A-58E98ABD06FD}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BinarySeachIteratively.Tests", "BinarySeachIteratively.Tests\BinarySeachIteratively.Tests.csproj", "{BF4716BA-34DE-4518-AAEE-A7385C18EB1A}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -111,6 +115,14 @@ Global
 		{73A661EF-DBC9-49C7-B316-481CCF3535E7}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{73A661EF-DBC9-49C7-B316-481CCF3535E7}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{73A661EF-DBC9-49C7-B316-481CCF3535E7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{866B380F-B0DA-4B1C-B00A-58E98ABD06FD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{866B380F-B0DA-4B1C-B00A-58E98ABD06FD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{866B380F-B0DA-4B1C-B00A-58E98ABD06FD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{866B380F-B0DA-4B1C-B00A-58E98ABD06FD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BF4716BA-34DE-4518-AAEE-A7385C18EB1A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BF4716BA-34DE-4518-AAEE-A7385C18EB1A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BF4716BA-34DE-4518-AAEE-A7385C18EB1A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BF4716BA-34DE-4518-AAEE-A7385C18EB1A}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -133,6 +145,8 @@ Global
 		{FA8DBB87-3A15-48D6-967F-8563D952F4F5} = {13BFE4C6-17E7-4EAD-AE13-ECDF28B438ED}
 		{578CC528-EF82-4D6F-B995-CB0B56E93D28} = {FA8DBB87-3A15-48D6-967F-8563D952F4F5}
 		{73A661EF-DBC9-49C7-B316-481CCF3535E7} = {FA8DBB87-3A15-48D6-967F-8563D952F4F5}
+		{866B380F-B0DA-4B1C-B00A-58E98ABD06FD} = {FA8DBB87-3A15-48D6-967F-8563D952F4F5}
+		{BF4716BA-34DE-4518-AAEE-A7385C18EB1A} = {FA8DBB87-3A15-48D6-967F-8563D952F4F5}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {B236DD2A-F3D2-471E-805D-C9952324EAEA}
