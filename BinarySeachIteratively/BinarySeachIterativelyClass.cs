@@ -2,7 +2,7 @@
 {
     public class BinarySeachIterativelyClass
     {
-        public int binarySearchIteritevely(int[] inputArray, int numberOfElements, int key)
+        public  int BinarySearchIteritevely(int[] inputArray, int numberOfElements, int key)
         {
             Array.Sort(inputArray);
             int leftIndex = 0;
@@ -20,7 +20,7 @@
             return -1;
         }
 
-        public int binarysearchRecursion(int[] A, int key, int l, int r)
+        public int BinarysearchRecursion(int[] A, int key, int l, int r)
         {
             if (l > r)
                 return -1;
@@ -30,9 +30,9 @@
                 if (key == A[mid])
                     return mid;
                 else if (key < A[mid])
-                    return binarysearchRecursion(A, key, l, mid - 1);
+                    return BinarysearchRecursion(A, key, l, mid - 1);
                 else if (key > A[mid])
-                    return binarysearchRecursion(A, key, mid + 1, r);
+                    return BinarysearchRecursion(A, key, mid + 1, r);
             }
             return -1;
         }

@@ -3,7 +3,7 @@ namespace BinarySeachIteratively.Tests
     public class UnitTest1
     {
         [Fact]
-        public void binarySearchIteritevely_Should_Return_Index()
+        public void BinarySearchIteritevelyShouldReturnIndex()
         {
             //ARRANGE					
             int key = 86;
@@ -12,28 +12,26 @@ namespace BinarySeachIteratively.Tests
 
             //ACT					 
             var seachIteritively = new BinarySeachIterativelyClass()
-                                       .binarySearchIteritevely(inputArray, numberOfElements, key);
+                                       .BinarySearchIteritevely(inputArray, numberOfElements, key);
 
             //ASSERT				
             Assert.Equal(4, seachIteritively);	 
         }
 
         [Fact]
-        public void binarysearchRecursion_Should_Return_Index()
+        public void BinarysearchRecursionShouldReturnIndex()
         {
-            //ARRANGE					
-            int key = 86;      
+            //ARRANGE              
             int[] inputArray = { 15, 21, 47, 84, 96 };
             
 
             //ACT					 
             var seachIteritively = new BinarySeachIterativelyClass()
-                                       .binarysearchRecursion(inputArray,96, 0, 4);
+                                       .BinarysearchRecursion(inputArray,96, 0, 4);
 
             //ASSERT				
             Assert.Equal(4, seachIteritively);
         }
-
 
     }
 }

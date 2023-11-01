@@ -2,14 +2,14 @@
 {
     public class Search
     {
-        public int linearsearch(int[] inputArray, int numberOfElements, int key)
+        public static int Linearsearch(int[] inputArray, int numberOfElements, int key)
         {
             int index = 0;
             while (index < numberOfElements)
             {
                 if (inputArray[index] == key)
                     return index;
-                index = index + 1;
+                index++;
             }
             return -1;
         }
