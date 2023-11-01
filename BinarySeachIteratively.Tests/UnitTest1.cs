@@ -18,6 +18,22 @@ namespace BinarySeachIteratively.Tests
             Assert.Equal(4, seachIteritively);	 
         }
 
+        [Fact]
+        public void binarysearchRecursion_Should_Return_Index()
+        {
+            //ARRANGE					
+            int key = 86;      
+            int[] inputArray = { 15, 21, 47, 84, 96 };
+            
+
+            //ACT					 
+            var seachIteritively = new BinarySeachIterativelyClass()
+                                       .binarysearchRecursion(inputArray,96, 0, 4);
+
+            //ASSERT				
+            Assert.Equal(4, seachIteritively);
+        }
+
 
     }
 }
