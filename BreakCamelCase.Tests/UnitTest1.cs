@@ -14,8 +14,15 @@ namespace BreakCamelCase.Tests
         [Fact]
         public void Should_be_assigned_Different_values()
         {
-            var actual = BreakCamelCaseClass.BreakCamelCase("khotsoCharles");
+            var actual = BreakCamelCaseClass.BreakCamelCaseSolutionOne("khotsoCharles");
             Assert.Equal("khotso Charles", actual);
+        }
+
+        [Fact]
+        public void BreakCamelCaseShouldReturnSpacedSentence()
+        {
+            var actual = BreakCamelCaseClass.BreakCamelCaseSecondSolution("khotsoCharlesMokhethi");
+            Assert.Equal("khotso Charles Mokhethi", actual);
         }
     }
 }

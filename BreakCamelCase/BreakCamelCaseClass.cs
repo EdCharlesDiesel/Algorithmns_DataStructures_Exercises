@@ -1,27 +1,48 @@
-﻿namespace BreakCamelCase
+﻿using System;
+using System.Linq;
+using System.Text;
+
+namespace BreakCamelCase
 {
     /// <summary>
-    /// 
+    /// Complete the solution so that the function will break up 
+    /// camel casing, using a space between words.
+    ///
+    /// Example
+    /// "camelCasing"  =>  "camel Casing"
+    /// "identifier"   =>  "identifier"
+    /// ""             =>  ""
     /// </summary>
     public class BreakCamelCaseClass
     {
-        public static IEnumerable<char> BreakCamelCase(string value)
+        public static string BreakCamelCase(string str)
         {
-            var test = 0;
+            return String.Join("", str.Select(x => char.IsUpper(x) ? " " + x : x.ToString()));
+        }
 
-            foreach (char c in value)
+        public static string BreakCamelCaseSolutionOne(string str)
+        {
+            var sb = new StringBuilder();
+            foreach (var symbol in str)
             {
-                value.ToCharArray();
-                var result = char.IsUpper(c);
-                if (result == true)
-                {
-                    test = value.IndexOf(c);
-                }
-            }  
-            var newCharArray = value.Insert(Convert.ToInt32(test), " ");
-            
+                if (char.IsUpper(symbol)) sb.Append(" ");
+                sb.Append(symbol);
+            }
+            return sb.ToString().Trim();
+        }
 
-            return newCharArray;
+        public static string BreakCamelCaseSecondSolution(string str)
+        {
+            var res = new StringBuilder();
+            foreach (var ch in str)
+            {
+                if (ch >= 'A' && ch <= 'Z')
+                {
+                    res.Append(" ");
+                }
+                res.Append(ch);
+            }
+            return res.ToString();
         }
     }
 }

@@ -4,7 +4,7 @@ namespace SelectionSort.Tests
     {
 
 		[Fact]
-		public void Method_Should_Return_False()
+		public void SelectionSortMethodShouldReturnSortedArray()
 		{
             //ARRANGE					 
             SelectionSortClass selectionSort = new();
@@ -17,5 +17,7 @@ namespace SelectionSort.Tests
             //ASSERT					 
             Assert.Equal(array, actual);
         }
+
+       
     }
 }
