@@ -41,15 +41,19 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SearchingAlgorithmns", "Sea
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SearchingAlgorithmns.Tests", "SearchingAlgorithmns.Tests\SearchingAlgorithmns.Tests.csproj", "{73A661EF-DBC9-49C7-B316-481CCF3535E7}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BinarySeachIteratively", "BinarySeachIteratively\BinarySeachIteratively.csproj", "{866B380F-B0DA-4B1C-B00A-58E98ABD06FD}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BinarySeachIteratively", "BinarySeachIteratively\BinarySeachIteratively.csproj", "{866B380F-B0DA-4B1C-B00A-58E98ABD06FD}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BinarySeachIteratively.Tests", "BinarySeachIteratively.Tests\BinarySeachIteratively.Tests.csproj", "{BF4716BA-34DE-4518-AAEE-A7385C18EB1A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BinarySeachIteratively.Tests", "BinarySeachIteratively.Tests\BinarySeachIteratively.Tests.csproj", "{BF4716BA-34DE-4518-AAEE-A7385C18EB1A}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Sorting Algorithms", "Sorting Algorithms", "{67380DE1-C1C1-4E53-A0B2-A02EA07A2603}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SelectionSort", "SelectionSort\SelectionSort.csproj", "{1ADF4B41-1959-4B45-A1B4-8B34F91CEBB0}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SelectionSort", "SelectionSort\SelectionSort.csproj", "{1ADF4B41-1959-4B45-A1B4-8B34F91CEBB0}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SelectionSort.Tests", "SelectionSort.Tests\SelectionSort.Tests.csproj", "{DC9E8CB2-9A8E-43E7-A707-C9C601A7997C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SelectionSort.Tests", "SelectionSort.Tests\SelectionSort.Tests.csproj", "{DC9E8CB2-9A8E-43E7-A707-C9C601A7997C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "InsertionSort", "InsertionSort\InsertionSort.csproj", "{CA808E40-D4DC-44CA-B759-97976318FD3D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "InsertionSort.Tests", "InsertionSort.Tests\InsertionSort.Tests.csproj", "{DF2E8AAD-8D80-4270-8D35-24142AA26589}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -137,6 +141,14 @@ Global
 		{DC9E8CB2-9A8E-43E7-A707-C9C601A7997C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{DC9E8CB2-9A8E-43E7-A707-C9C601A7997C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{DC9E8CB2-9A8E-43E7-A707-C9C601A7997C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CA808E40-D4DC-44CA-B759-97976318FD3D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CA808E40-D4DC-44CA-B759-97976318FD3D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CA808E40-D4DC-44CA-B759-97976318FD3D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CA808E40-D4DC-44CA-B759-97976318FD3D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DF2E8AAD-8D80-4270-8D35-24142AA26589}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DF2E8AAD-8D80-4270-8D35-24142AA26589}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DF2E8AAD-8D80-4270-8D35-24142AA26589}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DF2E8AAD-8D80-4270-8D35-24142AA26589}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -164,6 +176,8 @@ Global
 		{67380DE1-C1C1-4E53-A0B2-A02EA07A2603} = {13BFE4C6-17E7-4EAD-AE13-ECDF28B438ED}
 		{1ADF4B41-1959-4B45-A1B4-8B34F91CEBB0} = {67380DE1-C1C1-4E53-A0B2-A02EA07A2603}
 		{DC9E8CB2-9A8E-43E7-A707-C9C601A7997C} = {67380DE1-C1C1-4E53-A0B2-A02EA07A2603}
+		{CA808E40-D4DC-44CA-B759-97976318FD3D} = {67380DE1-C1C1-4E53-A0B2-A02EA07A2603}
+		{DF2E8AAD-8D80-4270-8D35-24142AA26589} = {67380DE1-C1C1-4E53-A0B2-A02EA07A2603}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {B236DD2A-F3D2-471E-805D-C9952324EAEA}
