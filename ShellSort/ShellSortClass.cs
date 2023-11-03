@@ -2,13 +2,13 @@
 {
     public static class ShellSortClass
     {
-        public static void ShellSort(int[] array, int n)
+        public static void ShellSort(int[] array, int length)
         {
-            int gap = n / 2;
+            int gap = length / 2;
             while (gap > 0)
             {
                 int i = gap;
-                while (i < n)
+                while (i < length)
                 {
                     int temp = array[i];
                     int j = i - gap;

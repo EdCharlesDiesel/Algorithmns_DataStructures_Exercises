@@ -2,17 +2,17 @@
 {
     public class BubbleSortClass
     {
-        public void Bubblesort(int[] array, int limit)
+        public void Bubblesort(int[] array, int length)
         {
-            for (int pass = limit - 1; pass >= 0; pass--)
+            for (int i = length - 1; i >= 0; i--)
             {
-                for (int i = 0; i < pass; i++)
+                for (int j = 0; j < i; i++)
                 {
-                    if (array[i] > array[i + 1])
+                    if (array[j] > array[j + 1])
                     {
-                        int temp = array[i];
-                        array[i] = array[i + 1];
-                        array[i + 1] = temp;
+                        int temp = array[j];
+                        array[j] = array[j + 1];
+                        array[j + 1] = temp;
                     }
                 }
             }
