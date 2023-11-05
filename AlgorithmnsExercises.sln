@@ -51,29 +51,33 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SelectionSort", "SelectionS
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SelectionSort.Tests", "SelectionSort.Tests\SelectionSort.Tests.csproj", "{DC9E8CB2-9A8E-43E7-A707-C9C601A7997C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "InsertionSort", "InsertionSort\InsertionSort.csproj", "{CA808E40-D4DC-44CA-B759-97976318FD3D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "InsertionSort", "InsertionSort\InsertionSort.csproj", "{CA808E40-D4DC-44CA-B759-97976318FD3D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "InsertionSort.Tests", "InsertionSort.Tests\InsertionSort.Tests.csproj", "{DF2E8AAD-8D80-4270-8D35-24142AA26589}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "InsertionSort.Tests", "InsertionSort.Tests\InsertionSort.Tests.csproj", "{DF2E8AAD-8D80-4270-8D35-24142AA26589}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BubbleSort", "BubbleSort\BubbleSort.csproj", "{6813EEDA-2BD8-41B1-8275-AB2A463B5697}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BubbleSort", "BubbleSort\BubbleSort.csproj", "{6813EEDA-2BD8-41B1-8275-AB2A463B5697}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BubbleSort.Tests", "BubbleSort.Tests\BubbleSort.Tests.csproj", "{567617B6-E9AA-4DBB-AA3F-82892E124130}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BubbleSort.Tests", "BubbleSort.Tests\BubbleSort.Tests.csproj", "{567617B6-E9AA-4DBB-AA3F-82892E124130}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ShellSort", "ShellSort\ShellSort.csproj", "{19C9D6CE-27EC-4FB6-A05A-2F7B0B559B8F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ShellSort", "ShellSort\ShellSort.csproj", "{19C9D6CE-27EC-4FB6-A05A-2F7B0B559B8F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ShellSort.Tests", "ShellSort.Tests\ShellSort.Tests.csproj", "{5FAA42C6-7DA0-4A8C-8B88-EDF92465F1B5}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ShellSort.Tests", "ShellSort.Tests\ShellSort.Tests.csproj", "{5FAA42C6-7DA0-4A8C-8B88-EDF92465F1B5}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MergeSort", "MergeSort\MergeSort.csproj", "{4C2DDB64-03D5-4299-BEB4-95A84E9B6086}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MergeSort", "MergeSort\MergeSort.csproj", "{4C2DDB64-03D5-4299-BEB4-95A84E9B6086}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MergeSort.Tests", "MergeSort.Tests\MergeSort.Tests.csproj", "{B38D2BF6-8438-44C9-B391-D46838FFFA99}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MergeSort.Tests", "MergeSort.Tests\MergeSort.Tests.csproj", "{B38D2BF6-8438-44C9-B391-D46838FFFA99}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "QuickSort", "QuickSort\QuickSort.csproj", "{0498A4F1-F892-4CF1-887C-19FA48375DD5}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "QuickSort", "QuickSort\QuickSort.csproj", "{0498A4F1-F892-4CF1-887C-19FA48375DD5}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "QuickSort.Tests", "QuickSort.Tests\QuickSort.Tests.csproj", "{0AB48656-9701-4127-A50D-04AE15842357}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "QuickSort.Tests", "QuickSort.Tests\QuickSort.Tests.csproj", "{0AB48656-9701-4127-A50D-04AE15842357}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "InsertionSortExercise", "InsertionSortExercise\InsertionSortExercise.csproj", "{43FD8C2D-1FF0-43E1-B77E-79C46C91B033}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "InsertionSortExercise", "InsertionSortExercise\InsertionSortExercise.csproj", "{43FD8C2D-1FF0-43E1-B77E-79C46C91B033}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "InsertionSortExercise.Tests", "InsertionSortExercise.Tests\InsertionSortExercise.Tests.csproj", "{4C400B34-7596-4A1B-9EAF-7DC996B79B18}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "InsertionSortExercise.Tests", "InsertionSortExercise.Tests\InsertionSortExercise.Tests.csproj", "{4C400B34-7596-4A1B-9EAF-7DC996B79B18}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "QuickSortExercise", "QuickSortExercise\QuickSortExercise.csproj", "{BD7B8F8A-CFEA-4696-9E74-A3CFF313E58F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "QuickSortExercise.Tests", "QuickSortExercise.Tests\QuickSortExercise.Tests.csproj", "{4BA478C9-EE02-4050-9D2A-93DD559691C6}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -209,6 +213,14 @@ Global
 		{4C400B34-7596-4A1B-9EAF-7DC996B79B18}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{4C400B34-7596-4A1B-9EAF-7DC996B79B18}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{4C400B34-7596-4A1B-9EAF-7DC996B79B18}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BD7B8F8A-CFEA-4696-9E74-A3CFF313E58F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BD7B8F8A-CFEA-4696-9E74-A3CFF313E58F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BD7B8F8A-CFEA-4696-9E74-A3CFF313E58F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BD7B8F8A-CFEA-4696-9E74-A3CFF313E58F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4BA478C9-EE02-4050-9D2A-93DD559691C6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4BA478C9-EE02-4050-9D2A-93DD559691C6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4BA478C9-EE02-4050-9D2A-93DD559691C6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4BA478C9-EE02-4050-9D2A-93DD559691C6}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -248,6 +260,8 @@ Global
 		{0AB48656-9701-4127-A50D-04AE15842357} = {67380DE1-C1C1-4E53-A0B2-A02EA07A2603}
 		{43FD8C2D-1FF0-43E1-B77E-79C46C91B033} = {C386E126-8666-4447-B75E-2256E563A1DA}
 		{4C400B34-7596-4A1B-9EAF-7DC996B79B18} = {C386E126-8666-4447-B75E-2256E563A1DA}
+		{BD7B8F8A-CFEA-4696-9E74-A3CFF313E58F} = {C386E126-8666-4447-B75E-2256E563A1DA}
+		{4BA478C9-EE02-4050-9D2A-93DD559691C6} = {C386E126-8666-4447-B75E-2256E563A1DA}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {B236DD2A-F3D2-471E-805D-C9952324EAEA}
