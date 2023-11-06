@@ -14,7 +14,7 @@
 
         }
 
-        private static void Partition(int[] array, int low, int high)
+        private static int Partition(int[] array, int low, int high)
         {
             int pivot = array[low];
             int i = array[low+1];
@@ -26,12 +26,21 @@
                 {
                     i=i+1;
                 }
-                while (i<= array[j])
-                {
-
-                }
+                while (i <= j && array[j] > pivot)
+                    j = j - 1;
+                if (i <= j)
+                    Swap(array, i, j);
 
             } while (i<j);
+            Swap(array, low, j);
+            return j;
+        }
+
+        private static void Swap(int[] array, int i, int j)
+        {
+            int temp = array[i];
+            array[i] = array[j];
+            array[j] = temp;
         }
     }
 } 

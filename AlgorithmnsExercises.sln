@@ -75,9 +75,15 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "InsertionSortExercise", "In
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "InsertionSortExercise.Tests", "InsertionSortExercise.Tests\InsertionSortExercise.Tests.csproj", "{4C400B34-7596-4A1B-9EAF-7DC996B79B18}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "QuickSortExercise", "QuickSortExercise\QuickSortExercise.csproj", "{BD7B8F8A-CFEA-4696-9E74-A3CFF313E58F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "QuickSortExercise", "QuickSortExercise\QuickSortExercise.csproj", "{BD7B8F8A-CFEA-4696-9E74-A3CFF313E58F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "QuickSortExercise.Tests", "QuickSortExercise.Tests\QuickSortExercise.Tests.csproj", "{4BA478C9-EE02-4050-9D2A-93DD559691C6}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "QuickSortExercise.Tests", "QuickSortExercise.Tests\QuickSortExercise.Tests.csproj", "{4BA478C9-EE02-4050-9D2A-93DD559691C6}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LinkedList", "LinkedList\LinkedList.csproj", "{AE6B1AF7-3C66-4980-9E17-5DD8DB56216D}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "LinkedLists", "LinkedLists", "{9FEC90FC-FDF2-4765-99ED-5F756C106D79}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LinkedList.Tests", "LinkedList.Tests\LinkedList.Tests.csproj", "{60B34FFF-D9B1-40DC-89B9-16964029E2D3}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -221,6 +227,14 @@ Global
 		{4BA478C9-EE02-4050-9D2A-93DD559691C6}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{4BA478C9-EE02-4050-9D2A-93DD559691C6}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{4BA478C9-EE02-4050-9D2A-93DD559691C6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{AE6B1AF7-3C66-4980-9E17-5DD8DB56216D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AE6B1AF7-3C66-4980-9E17-5DD8DB56216D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AE6B1AF7-3C66-4980-9E17-5DD8DB56216D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AE6B1AF7-3C66-4980-9E17-5DD8DB56216D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{60B34FFF-D9B1-40DC-89B9-16964029E2D3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{60B34FFF-D9B1-40DC-89B9-16964029E2D3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{60B34FFF-D9B1-40DC-89B9-16964029E2D3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{60B34FFF-D9B1-40DC-89B9-16964029E2D3}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -262,6 +276,9 @@ Global
 		{4C400B34-7596-4A1B-9EAF-7DC996B79B18} = {C386E126-8666-4447-B75E-2256E563A1DA}
 		{BD7B8F8A-CFEA-4696-9E74-A3CFF313E58F} = {C386E126-8666-4447-B75E-2256E563A1DA}
 		{4BA478C9-EE02-4050-9D2A-93DD559691C6} = {C386E126-8666-4447-B75E-2256E563A1DA}
+		{AE6B1AF7-3C66-4980-9E17-5DD8DB56216D} = {9FEC90FC-FDF2-4765-99ED-5F756C106D79}
+		{9FEC90FC-FDF2-4765-99ED-5F756C106D79} = {13BFE4C6-17E7-4EAD-AE13-ECDF28B438ED}
+		{60B34FFF-D9B1-40DC-89B9-16964029E2D3} = {9FEC90FC-FDF2-4765-99ED-5F756C106D79}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {B236DD2A-F3D2-471E-805D-C9952324EAEA}
