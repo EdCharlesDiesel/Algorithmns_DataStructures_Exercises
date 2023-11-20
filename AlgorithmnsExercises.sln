@@ -61,6 +61,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Easy_Algorithms", "Easy_Alg
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Easy_Algorithms.Tests", "Easy_Algorithms.Tests\Easy_Algorithms.Tests.csproj", "{BF19C89A-0FC6-433A-92E7-05A2F7FDCD5C}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Famous Algorithms", "Famous Algorithms", "{D5CCEB3D-5A7B-4C80-A670-3D9737ABDA7C}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -179,6 +181,7 @@ Global
 		{C7C0D5AD-B829-479F-BB26-5D7C5458FF28} = {C386E126-8666-4447-B75E-2256E563A1DA}
 		{EB1E9FE1-5068-439F-A70E-22364E6488A0} = {9662C415-1979-476B-8B5D-EF158CC26A91}
 		{BF19C89A-0FC6-433A-92E7-05A2F7FDCD5C} = {9662C415-1979-476B-8B5D-EF158CC26A91}
+		{D5CCEB3D-5A7B-4C80-A670-3D9737ABDA7C} = {C386E126-8666-4447-B75E-2256E563A1DA}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {B236DD2A-F3D2-471E-805D-C9952324EAEA}
