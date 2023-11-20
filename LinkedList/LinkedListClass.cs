@@ -139,7 +139,11 @@
             size = size - 1;
             return e;
         }
-
+        /// <summary>
+        /// Search linkedlist by key
+        /// </summary>
+        /// <param name="key"></param>
+        /// <returns></returns>
         public int Search(int key)
         {
             Node p = first;

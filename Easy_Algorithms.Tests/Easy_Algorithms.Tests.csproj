@@ -22,4 +22,8 @@
     </PackageReference>
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\Easy_Algorithms\Easy_Algorithms.csproj" />
+  </ItemGroup>
+
 </Project>
