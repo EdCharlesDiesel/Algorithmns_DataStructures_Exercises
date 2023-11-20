@@ -4,6 +4,123 @@ namespace Easy_Algorithms.Tests
 {
     public class Easy_AlgorithmsUnitTest
     {
+        #region EvaluateExpressionTree
+        [Fact]
+        public void EvaluateExpressionTreeClassTest1()
+        {
+            EvaluateExpressionTreeClass.BinaryTree tree = new EvaluateExpressionTreeClass.BinaryTree(-1);
+            tree.left = new EvaluateExpressionTreeClass.BinaryTree(2);
+            tree.right = new EvaluateExpressionTreeClass.BinaryTree(-2);
+            tree.right.left = new EvaluateExpressionTreeClass.BinaryTree(5);
+            tree.right.right = new EvaluateExpressionTreeClass.BinaryTree(1);
+            var expected = 6;
+            var actual = new EvaluateExpressionTreeClass().EvaluateExpressionTree(tree);
+            Assert.True(expected == actual);
+        } 
+        #endregion
+
+        #region NonConstructibleChange
+        [Fact]
+        public void NonConstructibleChangeTest1()
+        {
+            int[] input = new int[] { 5, 7, 1, 1, 2, 3, 22 };
+            int expected = 20;
+            var actual = new NonConstructibleChangeClass().NonConstructibleChange(input);
+            Assert.True(expected == actual);
+        } 
+        #endregion
+
+        #region SortedSquaredArray
+        [Fact]
+        public void SortedSquaredArrayTest1()
+        {
+            var input = new int[] { 1, 2, 3, 5, 6, 8, 9 };
+            var expected = new int[] { 1, 4, 9, 25, 36, 64, 81 };
+            var actual = new SortedSquaredArrayClass().SortedSquaredArray(input);
+            for (int i = 0; i < expected.Length; i++)
+            {
+                Assert.True(expected[i] == actual[i]);
+            }
+        } 
+        #endregion
+
+        #region TournamentWinner
+        [Fact]
+        public void TournamentWinnerTest1()
+        {
+            List<List<string>> competitions = new List<List<string>>();
+            List<string> competition1 = new List<string> {
+            "HTML", "C#"
+             };
+
+            List<string> competition2 = new List<string> {
+            "C#", "Python"
+            };
+
+            List<string> competition3 = new List<string> {
+            "Python", "HTML"
+        };
+            competitions.Add(competition1);
+            competitions.Add(competition2);
+            competitions.Add(competition3);
+            List<int> results = new List<int> {
+            0, 0, 1
+        };
+            string expected = "Python";
+            var actual = new TournamentWinnerClass().TournamentWinner(competitions, results);
+            Assert.True(expected == actual);
+        } 
+        #endregion
+
+        #region TransposeMatrix
+        [Fact]
+        public void TransposeMatrixTest1()
+        {
+            int[,] input = new int[3, 3] {
+                {1,2,3},{4,5,6},{7,8,9}
+            };
+            int[,] expected = new int[3, 3] {
+                {1,4,7},{2,5,8},{3,6,9}
+            };
+
+            int[,] actual = new TransposeMatrixClass().TransposeMatrix(input);
+            Assert.True(expected.Length == actual.Length);
+            for (int i = 0; i < expected.GetLength(0); i++)
+            {
+                for (int j = 0; j < expected.GetLength(1); j++)
+                {
+                    Assert.True(expected[i, j] == actual[i, j]);
+                }
+            }
+        } 
+        #endregion
+
+        #region IsValidSubsequence
+        [Fact]
+        public void TestCase1()
+        {
+            List<int> array = new List<int> {
+                5, 1, 22, 25, 6, -1, 8, 10
+            };
+
+            List<int> sequence = new List<int> {
+            1, 6, -1, 10
+            };
+
+            Assert.True(ValidateSubsequenceClass.IsValidSubsequence(array, sequence));
+        } 
+        #endregion
+
+        #region TwoNumberSum
+        [Fact]
+        public void TwoNumberSumTest1()
+        {
+            int[] output = new TwoNumberSumClass().TwoNumberSum(new int[] { 3, 5, -4, 8, 11, 1, -1, 6 }, 10);
+            Assert.True(output.Length == 2);
+            Assert.True(Array.Exists(output, e => e == -1));
+            Assert.True(Array.Exists(output, e => e == 11));
+        } 
+        #endregion
 
         #region SumTwoSmallestNumbers
         [Fact]
