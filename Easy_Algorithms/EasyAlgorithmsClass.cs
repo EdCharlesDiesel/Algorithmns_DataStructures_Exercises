@@ -5,6 +5,554 @@ namespace Easy_Algorithms
 {
     public class EasyAlgorithmsClass
     {
+        #region Semordnilap
+        /// <summary>
+        /// 
+        /// </summary>
+        public class SemordnilapClass
+        {
+            public List<List<string>> Semordnilap(string[] words)
+            {
+                HashSet<string> wordsSet = new HashSet<string>();
+                List<List<string>> semordnilapPairs = new List<List<string>>();
+
+                foreach (var word in words)
+                {
+                    char[] chars = word.ToCharArray();
+                    Array.Reverse(chars);
+                    string reverse = new string(chars);
+                    if (wordsSet.Contains(reverse) && !reverse.Equals(word))
+                    {
+                        List<string> semordnilapPair = new List<string> { word, reverse };
+                        semordnilapPairs.Add(semordnilapPair);
+                        wordsSet.Remove(word);
+                        wordsSet.Remove(reverse);
+                    }
+                }
+
+                return semordnilapPairs;
+            }
+        } 
+        #endregion
+
+        #region RunLengthEncoding
+        /// <summary>
+        /// Write a function that takes in a non-empty
+        /// string and returns it's run-length encoding.
+        /// From Wikipedia, "run-length encoding is a form
+        /// of lossless data compression in which runs of
+        /// data are stored as a single data value and count
+        /// rather than as the original run". For this problem,
+        /// a run of data is any sequence consecutive, identical
+        /// characters. So the run "AAA" would be run-length-encoded
+        /// as "3A".
+        /// 
+        /// To make things more complicated, however, the input string
+        /// can contain all sorts of special characters, including numbers
+        /// And since encoded data must be decodable, this means that
+        /// we can't naively run-length-encode long runs. For example,
+        /// the run "AAAAAAAAAAAA" (12A)s, can naively be decoded as "12A"
+        /// sinc this string can be decoded as either "AAAAAAAAAAAA" or
+        /// "1AA". Thus, long runs(runs of 10 or more characters) should
+        /// be encoded in a split fashion; the aforementioned run should be
+        /// encoded as "9A3A".
+        /// </summary>
+        /// <param name="stringArray"></param>
+        /// <returns>String</returns>
+        public class RunLengthEncodingClass
+        {
+            public string RunLengthEncoding(string stringArray)
+            {
+                //O(n) time | O(n) space - where n is the length of the input string
+                StringBuilder stringBuilder = new StringBuilder();
+                int currentLength = 1;
+                for (int i = 1; i < stringArray.Length; i++)
+                {
+                    char currentChar = stringArray[i];
+                    char previousChar = stringArray[i - 1];
+
+                    if ((currentChar != previousChar) || (currentLength == 9))
+                    {
+                        stringBuilder.Append(currentLength.ToString());
+                        stringBuilder.Append(previousChar);
+                        currentLength = 0;
+                    }
+
+                    currentLength += 1;
+                }
+
+                stringBuilder.Append(currentLength.ToString());
+
+                stringBuilder.Append(stringArray[stringArray.Length - 1]);
+
+                return stringBuilder.ToString();
+            }
+        }
+        #endregion
+
+        #region ReverseWordsInString
+        /// <summary>
+        /// 
+        /// </summary>
+        public class ReverseWordsInStringClass
+        {
+            public string ReverseWordsInString(string str)
+            {
+                List<string> words = new List<string>();
+                int startOfWord = 0;
+
+                for (int i = 0; i < str.Length; i++)
+                {
+                    char charecter = str[i];
+
+                    if (charecter == ' ')
+                    {
+                        words.Add(str.Substring(startOfWord, i - startOfWord));
+                        startOfWord = i;
+                    }
+                    else if (str[startOfWord] == ' ')
+                    {
+                        words.Add(" ");
+                        startOfWord = i;
+                    }
+                }
+
+                words.Add(str.Substring(startOfWord));
+                words.Reverse();
+                return String.Join(" ", words);
+            }
+        } 
+        #endregion
+
+        #region IsPalindrome
+        /// <summary>
+        /// 
+        /// </summary>
+        public class PalindromeCheckClass
+        {
+            // O(n) time | O(1) space
+            public static bool IsPalindrome(string str)
+            {
+                int leftIdx = 0;
+                int rightIdx = str.Length - 1;
+                while (leftIdx < rightIdx)
+                {
+                    if (str[leftIdx] != str[rightIdx])
+                    {
+                        return false;
+                    }
+                    leftIdx++;
+                    rightIdx--;
+                }
+                return true;
+            }
+        } 
+        #endregion
+
+        #region GenerateDocument
+        /// <summary>
+        /// 
+        /// </summary>
+        public class GenerateDocumentClass
+        {
+            public bool GenerateDocument(string characters, string document)
+            {
+                HashSet<char> alreadyCounted = new HashSet<char>();
+
+                for (int index = 0; index < document.Length; index++)
+                {
+                    char character = document[index];
+                    if (alreadyCounted.Contains(character))
+                    {
+                        continue;
+                    }
+
+                    int documentFrequency = CountcharFrequency(character, document);
+                    int characterFrequency = CountcharFrequency(character, characters);
+                    if (documentFrequency > characterFrequency)
+                    {
+                        return false;
+                    }
+
+                    alreadyCounted.Add(character);
+                }
+
+                return true;
+            }
+
+            private int CountcharFrequency(char character, string target)
+            {
+                int frequency = 0;
+                for (int index = 0; index < target.Length; index++)
+                {
+                    char c = target[index];
+                    if (c == character)
+                    {
+                        frequency += 1;
+                    }
+                }
+
+                return frequency;
+            }
+        } 
+        #endregion
+
+        #region FirstNonRepeatingCharacter
+        /// <summary>
+        /// 
+        /// </summary>
+        public class FirstNonRepeatingCharacterClass
+        {
+            public int FirstNonRepeatingCharacter(string str)
+            {
+                Dictionary<Char, int> charaterFrequency = new Dictionary<Char, int>();
+
+                for (int i = 0; i < str.Length; i++)
+                {
+                    char character = str[i];
+                    charaterFrequency[character] =
+                        charaterFrequency.GetValueOrDefault(character, 0) + 1;
+                }
+
+                for (int i = 0; i < str.Length; i++)
+                {
+                    char character = str[i];
+                    if (charaterFrequency[character] == 1)
+                    {
+                        return i;
+                    }
+                }
+
+                return -1;
+            }
+        } 
+        #endregion
+
+        #region CommonCharacters
+        /// <summary>
+        /// 
+        /// </summary>
+        public class CommonCharactersClass
+        {
+            public string[] CommonCharacters(string[] strings)
+            {
+                Dictionary<char, int> characterCounts = new Dictionary<char, int>();
+                foreach (var str in strings)
+                {
+                    HashSet<char> uniqueStringChars = new HashSet<char>();
+                    for (int i = 0; i < str.Length; i++)
+                    {
+                        uniqueStringChars.Add(str[i]);
+                    }
+
+                    foreach (var character in uniqueStringChars)
+                    {
+                        if (!characterCounts.ContainsKey(character))
+                        {
+                            characterCounts[character] = 0;
+                        }
+                        characterCounts[character] = characterCounts[character] + 1;
+                    }
+                }
+
+                List<char> finalChars = new List<char>();
+                foreach (var characterCount in characterCounts)
+                {
+                    char charater = characterCount.Key;
+                    int count = characterCount.Value;
+                    if (count == strings.Length)
+                    {
+                        finalChars.Add(charater);
+                    }
+                }
+
+                string[] finalCharArray = new string[finalChars.Count];
+                for (int i = 0; i < finalCharArray.Length; i++)
+                {
+                    finalCharArray[i] = finalChars[i].ToString();
+                }
+                return finalCharArray;
+            }
+        } 
+        #endregion
+
+        #region CaesarCypherEncryptor
+        /// <summary>
+        /// Given a non empty string of lowercase letters and non-negative
+        /// integer representing a key. write a function that returns a
+        /// new string obtained by shifting every letter in the input
+        /// string by k position in the alphabet,
+        /// where k is the key.
+        /// 
+        /// Note that letters should "wrap" around;
+        /// in other words, the letter  shifted by
+        /// one returns letter a
+        /// 
+        /// </summary>
+        public class CaesarCipherEncryptorClass
+        {
+            // O(n) time | O(n) space
+            public static string CaesarCypherEncryptor(string str, int key)
+            {
+                char[] newLetters = new char[str.Length];
+                int newKey = key % 26;
+                for (int i = 0; i < str.Length; i++)
+                {
+                    newLetters[i] = GetNewLetter(str[i], newKey);
+                }
+                return new string(newLetters);
+            }
+            public static char GetNewLetter(char letter, int key)
+            {
+                int newLetterCode = letter + key;
+                return newLetterCode <= 122 ? (char)newLetterCode : (char)(96 + newLetterCode % 122);
+            }
+        } 
+        #endregion
+
+        #region RemoveDuplicatesFromLinkedList
+        /// <summary>
+        /// 
+        /// </summary>
+        public class RemoveDuplicatesFromLinkedListClass
+        {
+            public LinkedList RemoveDuplicatesFromLinkedList(LinkedList linkedList)
+            {
+                LinkedList currentNode = linkedList;
+                while (currentNode != null)
+                {
+                    LinkedList nextDistince = currentNode.next;
+                    while (nextDistince != null && nextDistince.value == currentNode.value)
+                    {
+                        nextDistince = nextDistince.next;
+                    }
+
+                    currentNode.next = nextDistince;
+                    currentNode = nextDistince;
+                }
+
+                return linkedList;
+            }
+
+            public class LinkedList
+            {
+                public int value;
+                public LinkedList next = null;
+                public LinkedList(int value)
+                {
+                    this.value = value;
+                }
+            }
+        } 
+        #endregion
+
+        #region MiddleNode
+        /// <summary>
+        /// 
+        /// </summary>
+        public class MiddleNodeClass
+        {
+            public class LinkedList
+            {
+                public int value;
+                public LinkedList next;
+
+                public LinkedList(int value)
+                {
+                    this.value = value;
+                    this.next = null;
+                }
+            }
+
+            public LinkedList MiddleNode(LinkedList linkedList)
+            {
+                LinkedList slowNode = linkedList;
+                LinkedList fastnode = linkedList;
+                while (fastnode != null && fastnode.next != null)
+                {
+                    slowNode = fastnode.next;
+                    fastnode = fastnode.next;
+                }
+
+                return slowNode;
+            }
+        } 
+        #endregion
+
+        #region TandemBicycle
+        /// <summary>
+        /// 
+        /// </summary>
+        public class TandemBicycleClass
+        {
+            public int TandemBicycle(int[] redShirtSpeeds, int[] blueShirtSpeeds, bool fastest)
+            {
+                Array.Sort(redShirtSpeeds);
+                Array.Sort(blueShirtSpeeds);
+
+                if (!fastest)
+                {
+                    ReverseArrayInPlace(redShirtSpeeds);
+                }
+
+                var totalSpeed = 0;
+                for (int index = 0; index < redShirtSpeeds.Length; index++)
+                {
+                    var riderOne = redShirtSpeeds[index];
+                    var riderTwo = blueShirtSpeeds[blueShirtSpeeds.Length - index - 1];
+                    totalSpeed += Math.Max(riderOne, riderTwo);
+                }
+                return totalSpeed;
+            }
+
+            private void ReverseArrayInPlace(int[] redShirtSpeeds)
+            {
+                var start = 0;
+                var end = redShirtSpeeds.Length - 1;
+                while (start < end)
+                {
+                    var temp = redShirtSpeeds[start];
+                    redShirtSpeeds[start] = redShirtSpeeds[end];
+                    redShirtSpeeds[end] = temp;
+                    start += 1;
+                    end -= 1;
+                }
+            }
+        } 
+        #endregion
+
+        #region OptimalFreelancing
+        /// <summary>
+        /// 
+        /// </summary>
+        public class OptimalFreelancingClass
+        {
+            public int OptimalFreelancing(Dictionary<string, int>[] jobs)
+            {
+                const int LENGTH_OF_WEEK = 7;
+                int profit = 0;
+                Array.Sort(jobs, Comparer<Dictionary<string, int>>.Create((jobOne, JobTwo) => JobTwo["payment"]
+                .CompareTo(jobOne["payment"])
+                        )
+                );
+
+                bool[] timeline = new bool[LENGTH_OF_WEEK];
+
+                foreach (var job in jobs)
+                {
+                    int maxTime = Math.Min(job["deadline"], LENGTH_OF_WEEK);
+                    for (int time = maxTime - 1; time >= 0; time--)
+                    {
+                        if (!timeline[time])
+                        {
+                            timeline[time] = true;
+                            profit += job["payment"];
+                            break;
+                        }
+                    }
+                }
+
+                return profit;
+            }
+        } 
+        #endregion
+
+        #region MinimumWaitingTime
+        /// <summary>
+        /// 
+        /// </summary>
+        public class MinimumWaitingTimeClass
+        {
+            public int MinimumWaitingTime(int[] queries)
+            {
+                Array.Sort(queries);
+                int totailWaitingTime = 0;
+                for (int index = 0; index < queries.Length; index++)
+                {
+
+                    int duration = queries[index];
+                    int queriesLeft = queries.Length - (index + 1);
+                    totailWaitingTime += duration * queriesLeft;
+                }
+                return totailWaitingTime;
+            }
+        } 
+        #endregion
+
+        #region ClassPhotos
+        /// <summary>
+        /// 
+        /// </summary>
+        public class ClassPhotosClass
+        {
+            public bool ClassPhotos(List<int> redShirtHeights, List<int> blueShirtHeights)
+            {
+                redShirtHeights.Sort((a, b) => b.CompareTo(a));
+                blueShirtHeights.Sort((a, b) => b.CompareTo(a));
+
+                string shirtColorInFirstRow =
+                    (redShirtHeights[0] < blueShirtHeights[0]) ? "RED" : "BLUE";
+                for (int i = 0; i < redShirtHeights.Count; i++)
+                {
+                    int redShirtHeight = redShirtHeights[i];
+                    int blueShirtHeight = blueShirtHeights[i];
+
+                    if (shirtColorInFirstRow == "RED")
+                    {
+                        if (redShirtHeight >= blueShirtHeight)
+                        {
+                            return false;
+                        }
+                    }
+                    else
+                    {
+                        if (blueShirtHeight >= redShirtHeight)
+                        {
+                            return false;
+                        }
+                    }
+                }
+                return true;
+            }
+        } 
+        #endregion
+
+        #region DepthFirstSearch
+        /// <summary>
+        /// 
+        /// </summary>
+        public class DepthFirstSearchClass
+        {
+            public class Node
+            {
+                public string name;
+                public List<Node> children = new List<Node>();
+
+                public Node(string name)
+                {
+                    this.name = name;
+                }
+
+                public List<string> DepthFirstSearch(List<string> array)
+                {
+                    array.Add(name);
+                    for (int i = 0; i < children.Count; i++)
+                    {
+                        children[i].DepthFirstSearch(array);
+                    }
+                    return array;
+                }
+
+                public Node AddChild(string name)
+                {
+                    Node child = new Node(name);
+                    children.Add(child);
+                    return this;
+                }
+            }
+        } 
+        #endregion
+
         #region NodeDepths
         // Average case: when the tree is balanced
         // O(n) time | O(h) space - where n is the number of nodes in
@@ -592,11 +1140,10 @@ namespace Easy_Algorithms
 
         /// -Write a function that returns both the minimum and maximum number of the given list/array.
         /// </summary>
-        /// <param name="lst"></param>
         /// <returns></returns>
         public class MinMaxClass
         {
-            public static int[] minMax(int[] lst)
+            public static int[] MinMax(int[] lst)
             {
                 Array.Sort(lst);
                 var min = lst[0];
