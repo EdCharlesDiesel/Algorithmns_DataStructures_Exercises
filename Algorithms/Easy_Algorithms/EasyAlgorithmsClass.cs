@@ -124,13 +124,13 @@ namespace Easy_Algorithms
             /// team won.
             /// 
             /// it's guaranteed that exactly one team will win the tournament and thateach team will compete
-            /// agaist all other teamns exactly once. It's also guaranteed that the tournament will always have 
-            /// at leat two teamns.
+            /// against all other teams exactly once. It's also guaranteed that the tournament will always have 
+            /// at least two teams.
             /// 
             /// </summary>
             /// <returns></returns>
             /// <exception cref="NotImplementedException"></exception>
-            public int HOME_TEAM_WON = 1;
+            internal int HomeTeamWon = 1;
 
             public string TournamentWinner(List<List<string>> competitions, List<int> results)
             {
@@ -146,7 +146,7 @@ namespace Easy_Algorithms
                     var homeTeam = competition[0];
                     var awayTeam = competition[1];
 
-                    string winingTeam = (result == HOME_TEAM_WON) ? homeTeam : awayTeam;
+                    string winingTeam = (result == HomeTeamWon) ? homeTeam : awayTeam;
 
                     updateScores(winingTeam, 3, scores);
 
@@ -303,41 +303,41 @@ namespace Easy_Algorithms
             // the Binary Tree and h is the height of the Binary Tree
             public class BinaryTree
             {
-                private int value;
-                public BinaryTree left;
-                public BinaryTree right;
+                private int _value;
+                public BinaryTree? Left;
+                public BinaryTree? Right;
                 public BinaryTree(int value)
                 {
-                    this.value = value;
-                    left = null;
-                    right = null;
+                    this._value = value;
+                    Left = null;
+                    Right = null;
                 }
             }
 
-            public class Level
+            private class Level
             {
-                public BinaryTree root;
-                public int depth;
-                public Level(BinaryTree root, int depth)
+                public readonly BinaryTree? Root;
+                public readonly int Depth;
+                public Level(BinaryTree? root, int depth)
                 {
-                    this.root = root;
-                    this.depth = depth;
+                    this.Root = root;
+                    this.Depth = depth;
                 }
             }
-            public static int NodeDepths(BinaryTree root)
+            public static int NodeDepths(BinaryTree? root)
             {
                 int sumOfDepths = 0;
-                Stack<Level> stack = new Stack<Level>();
+                var stack = new Stack<Level>();
                 stack.Push(new Level(root, 0));
                 while (stack.Count > 0)
                 {
                     Level top = stack.Pop();
-                    BinaryTree node = top.root;
-                    int depth = top.depth;
+                    BinaryTree? node = top.Root;
+                    int depth = top.Depth;
                     if (node == null) continue;
                     sumOfDepths += depth;
-                    stack.Push(new Level(node.left, depth + 1));
-                    stack.Push(new Level(node.right, depth + 1));
+                    stack.Push(new Level(node.Left, depth + 1));
+                    stack.Push(new Level(node.Right, depth + 1));
                 }
                 return sumOfDepths;
             }
@@ -863,7 +863,15 @@ namespace Easy_Algorithms
 
         #region BinarySeach
         /// <summary>
-        /// 
+        /// Write a function that takes in a sorted array of integers as well as a target integer.
+        /// The function should use the Binary Seach algorithm to determine if the target integer
+        /// is contained in the  array and should return its index if it is, otherwise -1.
+        ///
+        /// Sample input:
+        /// array = [01,,21,33,45,45,61,71,72,73]
+        ///
+        /// Sample Output:
+        ///  3
         /// </summary>
         public class BinarySeachIterativelyClass
         {
@@ -906,7 +914,16 @@ namespace Easy_Algorithms
 
         #region FindThreeLargestNumbers
         /// <summary>
-        /// 
+        /// Write a function that takes in an array of at least three integers and, without sorting
+        /// the input array, returns a sorted array of the three largest integers in the input array.
+        ///
+        /// The function should return duplicated integers if necessary; for example, it should return
+        /// [10,10.12] for an input array of [10,5,9,10,12].
+        ///
+        /// Sample input:
+        /// array - [141,1,17,-7,17,-27,18,518,7,7]
+        /// Sample output:
+        /// [181,41,541]
         /// </summary>
         public static class FindThreeLargestNumbersClass
         {
@@ -915,26 +932,28 @@ namespace Easy_Algorithms
                 int[] threeLargest = { Int32.MinValue, Int32.MinValue, Int32.MinValue };
                 foreach (int num in array)
                 {
-                    updateLargest(threeLargest, num);
+                    UpdateLargest(threeLargest, num);
                 }
                 return threeLargest;
             }
-            public static void updateLargest(int[] threeLargest, int num)
+
+            private static void UpdateLargest(int[] threeLargest, int num)
             {
                 if (num > threeLargest[2])
                 {
-                    shiftAndUpdate(threeLargest, num, 2);
+                    ShiftAndUpdate(threeLargest, num, 2);
                 }
                 else if (num > threeLargest[1])
                 {
-                    shiftAndUpdate(threeLargest, num, 1);
+                    ShiftAndUpdate(threeLargest, num, 1);
                 }
                 else if (num > threeLargest[0])
                 {
-                    shiftAndUpdate(threeLargest, num, 0);
+                    ShiftAndUpdate(threeLargest, num, 0);
                 }
             }
-            public static void shiftAndUpdate(int[] array, int num, int idx)
+
+            private static void ShiftAndUpdate(int[] array, int num, int idx)
             {
                 for (int i = 0; i <= idx; i++)
                 {
@@ -953,7 +972,8 @@ namespace Easy_Algorithms
 
         #region BubbleSort
         /// <summary>
-        /// 
+        /// Write a function that takes in an array of integers and returns a sorted version of that
+        /// array. Use the bubble sort to sort the array.
         /// </summary>
         public static class BubbleSortClass
         {
@@ -963,8 +983,8 @@ namespace Easy_Algorithms
                 {
                     return new int[] { };
                 }
-                bool isSorted = false;
-                int counter = 0;
+                var isSorted = false;
+                var counter = 0;
                 while (!isSorted)
                 {
                     isSorted = true;
@@ -972,7 +992,7 @@ namespace Easy_Algorithms
                     {
                         if (array[i] > array[i + 1])
                         {
-                            swap(i, i + 1, array);
+                            Swap(i, i + 1, array);
                             isSorted = false;
                         }
                     }
@@ -980,7 +1000,8 @@ namespace Easy_Algorithms
                 }
                 return array;
             }
-            public static void swap(int i, int j, int[] array)
+
+            private static void Swap(int i, int j, int[] array)
             {
                 int temp = array[j];
                 array[j] = array[i];
@@ -991,7 +1012,8 @@ namespace Easy_Algorithms
 
         #region InsertionSort
         /// <summary>
-        /// 
+        /// Write a function that takes in an array of integer and returns a sorted version of
+        /// that array. Use insertion  sort.
         /// </summary>
         public class InsertionSortClass
         {
@@ -1026,7 +1048,8 @@ namespace Easy_Algorithms
 
         #region SelectionSort
         /// <summary>
-        /// 
+        /// Write a function that takes in an array of integer and returns a sorted version of
+        /// that array. Use selection sort algorithm.
         /// </summary>
         public class SelectionSortClass
         {
@@ -1057,7 +1080,8 @@ namespace Easy_Algorithms
 
         #region IsPalindrome
         /// <summary>
-        /// 
+        /// Write d dunction that takes  in an non-empty array string and that returns
+        /// a boolean representing whether the string is a palindrome.
         /// </summary>
         public class PalindromeCheckClass
         {
@@ -1115,6 +1139,7 @@ namespace Easy_Algorithms
         #endregion
 
         #region RunLengthEncoding
+
         /// <summary>
         /// Write a function that takes in a non-empty
         /// string and returns it's run-length encoding.
@@ -1131,12 +1156,11 @@ namespace Easy_Algorithms
         /// And since encoded data must be decodable, this means that
         /// we can't naively run-length-encode long runs. For example,
         /// the run "AAAAAAAAAAAA" (12A)s, can naively be decoded as "12A"
-        /// sinc this string can be decoded as either "AAAAAAAAAAAA" or
+        /// since this string can be decoded as either "AAAAAAAAAAAA" or
         /// "1AA". Thus, long runs(runs of 10 or more characters) should
         /// be encoded in a split fashion; the aforementioned run should be
         /// encoded as "9A3A".
         /// </summary>
-        /// <param name="stringArray"></param>
         /// <returns>String</returns>
         public class RunLengthEncodingClass
         {
@@ -1171,7 +1195,16 @@ namespace Easy_Algorithms
 
         #region CommonCharacters
         /// <summary>
-        /// 
+        /// Write a function that takes in a non-empty list  of non-empty string and
+        /// returns a list of characters that are common to all strings in the list,
+        /// ignoring multiplicity.
+        ///
+        /// Note that the strings are not guaranteed to only contain alphanumeric characters.
+        /// The list you return can be in any order.
+        /// Sample input:
+        /// strings = ["abc","bcd","cbaccd"]
+        /// Sample output:
+        /// ["b","c"]
         /// </summary>
         public class CommonCharactersClass
         {
@@ -1219,7 +1252,16 @@ namespace Easy_Algorithms
 
         #region GenerateDocument
         /// <summary>
-        /// 
+        /// You're given a string of available characters and a string representing a document
+        /// that you need to generate. Write a function that determined  if you can generate the
+        /// document using the available characters. If you can generate a document, your function
+        /// should return true:otherwise it should return false.
+        ///
+        /// You're only able to generate the document  if the frequency of unique characters in
+        /// string is greater than or equal to the frequency of unique characters in the document
+        /// string.
+        ///
+        /// The document that your need to create may contain any characters, including special characters. 
         /// </summary>
         public class GenerateDocumentClass
         {
@@ -1267,25 +1309,33 @@ namespace Easy_Algorithms
 
         #region FirstNonRepeatingCharacter
         /// <summary>
-        /// 
+        /// Write a function that takes in a string of lowercase English
+        /// alphabet letters and returns the index of the string's first
+        /// non-repeating characters.
+        ///
+        /// The first non-repeating characters is the first character in
+        /// a string that occurs only once.
+        ///
+        /// if the input string doesnt have any non-repeating characters your
+        /// function should return -1.
         /// </summary>
         public class FirstNonRepeatingCharacterClass
         {
             public int FirstNonRepeatingCharacter(string str)
             {
-                Dictionary<Char, int> charaterFrequency = new Dictionary<Char, int>();
+                Dictionary<Char, int> characterFrequency = new Dictionary<Char, int>();
 
                 for (int i = 0; i < str.Length; i++)
                 {
                     char character = str[i];
-                    charaterFrequency[character] =
-                        charaterFrequency.GetValueOrDefault(character, 0) + 1;
+                    characterFrequency[character] =
+                        characterFrequency.GetValueOrDefault(character, 0) + 1;
                 }
 
                 for (int i = 0; i < str.Length; i++)
                 {
                     char character = str[i];
-                    if (charaterFrequency[character] == 1)
+                    if (characterFrequency[character] == 1)
                     {
                         return i;
                     }
@@ -1298,6 +1348,11 @@ namespace Easy_Algorithms
 
         #region Semordnilap
         /// <summary>
+        /// Write a function that takes in a list of unique strings and returns a list of Semordnilap pairs
+        ///
+        /// A Semordnilap pair is defined as a set of different strings where the reverse of one word is the
+        /// same as the forward version of the other. For example the word "diaper and "repaid" are a
+        /// Semordnilap pair, as are the words "palindromes" and "Semordnilap" 
         /// 
         /// </summary>
         public class SemordnilapClass
@@ -1327,7 +1382,16 @@ namespace Easy_Algorithms
 
         #region ReverseWordsInString
         /// <summary>
-        /// 
+        ///  Write a function that takes in a string of words separated by one or more whitespaces
+        /// and returns a string that has these words in reverse order. For example, given the string
+        /// "tim is great", your function should return "great is tim.
+        ///
+        /// For this problem, a word can contain special character. The words in the string will
+        /// be separated by one or more whitespaces, and the reversed string must contain the same
+        /// whitespaces , and the reversed string.
+        ///
+        /// Node that you're not allowed to use any build-in split or reverse functions. but you
+        /// can use join function
         /// </summary>
         public class ReverseWordsInStringClass
         {
