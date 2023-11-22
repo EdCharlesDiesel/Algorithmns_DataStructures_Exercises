@@ -1,9 +1,103 @@
+using Microsoft.VisualStudio.TestPlatform.TestHost;
 using static Easy_Algorithms.EasyAlgorithmsClass;
 
 namespace Easy_Algorithms.Tests
 {
     public class EasyAlgorithmsUnitTest
     {
+        #region InsertionSort
+        [Fact]
+        public void InsertionSortTest1()
+        {
+            int[] expected = { 2, 3, 5, 5, 6, 8, 9 };
+            int[] input = { 8, 5, 2, 9, 5, 6, 3 };
+            Assert.True(compare(InsertionSortClass.InsertionSort(input), expected));
+        } 
+        #endregion
+
+        #region BubbleSort
+        [Fact]
+        public void BubbleSortTestCase1()
+        {
+            int[] expected = { 2, 3, 5, 5, 6, 8, 9 };
+            int[] input = { 8, 5, 2, 9, 5, 6, 3 };
+            Assert.True(compare(BubbleSortClass.BubbleSort(input), expected));
+        }
+
+        //public static bool compare(int[] arr1, int[] arr2)
+        //{
+        //    if (arr1.Length != arr2.Length)
+        //    {
+        //        return false;
+        //    }
+        //    for (int i = 0; i < arr1.Length; i++)
+        //    {
+        //        if (arr1[i] != arr2[i])
+        //        {
+        //            return false;
+        //        }
+        //    }
+        //    return true;
+        //} 
+        #endregion
+
+        #region FindThreeLargestNumbers
+        [Fact]
+        public void FindThreeLargestNumbersTestCase1()
+        {
+            int[] expected = { 18, 141, 541 };
+            Assert.True(compare(
+              FindThreeLargestNumbersClass.FindThreeLargestNumbers(
+                new int[] { 141, 1, 17, -7, -17, -27, 18, 541, 8, 7, 7 }
+              ),
+              expected
+            ));
+        }
+
+        public bool compare(int[] arr1, int[] arr2)
+        {
+            if (arr1.Length != arr2.Length)
+            {
+                return false;
+            }
+            for (int i = 0; i < arr1.Length; i++)
+            {
+                if (arr1[i] != arr2[i])
+                {
+                    return false;
+                }
+            }
+            return true;
+        } 
+        #endregion
+
+        #region ProductSum
+        [Fact]
+        public void ProductSumUnitTest()
+        {
+            List<object> test = new List<object>() {
+                  5,
+                  2,
+                  new List<object>() { 7, -1 },
+                  3,
+                  new List<object>() {
+                    6,
+                    new List<object>() { -13, 8 },
+                    4,
+                  },
+                };
+            Assert.True(ProductSumClass.ProductSum(test) == 12);
+        } 
+        #endregion
+
+        #region GetNthFib
+        [Fact]
+        public void GetNthFibTestCase1()
+        {
+            Assert.Equal(5, NthFibonacciClass.GetNthFib(6));
+        }
+        #endregion
+
         #region Semordnilap
         [Fact(Skip = "Failing Unit Test")]
         public void SemordnilapClassTest1()
@@ -34,7 +128,7 @@ namespace Easy_Algorithms.Tests
 
             //ASSERT
             Assert.True(expected.Equals(actual));
-        } 
+        }
         #endregion
 
         #region ReverseWordsInString
@@ -45,7 +139,7 @@ namespace Easy_Algorithms.Tests
             string expected = "best! the is AlgoExpert";
             string actual = new ReverseWordsInStringClass().ReverseWordsInString(input);
             Assert.True(expected.Equals(actual));
-        } 
+        }
         #endregion
 
         #region IsPalindrome
@@ -53,7 +147,7 @@ namespace Easy_Algorithms.Tests
         public void IsPalindromeTest1()
         {
             Assert.True(PalindromeCheckClass.IsPalindrome("abcdcba"));
-        } 
+        }
         #endregion
 
         #region GenerateDocument
@@ -65,7 +159,7 @@ namespace Easy_Algorithms.Tests
             bool expected = true;
             var actual = new GenerateDocumentClass().GenerateDocument(characters, document);
             Assert.True(expected == actual);
-        } 
+        }
         #endregion
 
         #region FirstNonRepeatingCharacter
@@ -76,7 +170,7 @@ namespace Easy_Algorithms.Tests
             int expected = 1;
             var actual = new FirstNonRepeatingCharacterClass().FirstNonRepeatingCharacter(input);
             Assert.True(expected == actual);
-        } 
+        }
         #endregion
 
         #region CommonCharacters
@@ -92,7 +186,7 @@ namespace Easy_Algorithms.Tests
             {
                 Assert.Equal(expected[i], actual[i]);
             }
-        } 
+        }
         #endregion
 
         #region CaesarCypherEncryptor
@@ -100,13 +194,13 @@ namespace Easy_Algorithms.Tests
         public void CaesarCypherEncryptorTest1()
         {
             Assert.True(CaesarCipherEncryptorClass.CaesarCypherEncryptor("xyz", 2).Equals("zab"));
-        }        
+        }
         #endregion
 
         /// <summary>
         /// Need to Fix this error
         /// </summary>
-        
+
         #region RemoveDuplicatesFromLinkedList
         //public class  RemoveDuplicatesFromLinkedListClass().LinkedList addMany(Program.LinkedList ll, List<int> values)
         //{
@@ -178,7 +272,7 @@ namespace Easy_Algorithms.Tests
             }
 
             return list;
-        } 
+        }
         #endregion
 
         #region TandemBicycle
@@ -192,7 +286,7 @@ namespace Easy_Algorithms.Tests
             var actual =
                 new TandemBicycleClass().TandemBicycle(redShirtSpeeds, blueShirtSpeeds, fastest);
             Assert.True(expected == actual);
-        } 
+        }
         #endregion
 
         #region OptimalFreelancing
@@ -207,7 +301,7 @@ namespace Easy_Algorithms.Tests
             var expected = 1;
             var actual = new OptimalFreelancingClass().OptimalFreelancing(input);
             Assert.True(expected == actual);
-        } 
+        }
         #endregion
 
         #region MinimumWaitingTime
@@ -218,7 +312,7 @@ namespace Easy_Algorithms.Tests
             int expected = 17;
             var actual = new MinimumWaitingTimeClass().MinimumWaitingTime(queries);
             Assert.True(actual == expected);
-        } 
+        }
         #endregion
 
         #region ClassPhotos
@@ -230,7 +324,7 @@ namespace Easy_Algorithms.Tests
             bool expected = true;
             bool actual = new ClassPhotosClass().ClassPhotos(redShirtHeights, blueShirtHeights);
             Assert.True(expected == actual);
-        } 
+        }
         #endregion
 
         #region DepthFirstSearch
@@ -264,7 +358,7 @@ namespace Easy_Algorithms.Tests
                 }
             }
             return true;
-        } 
+        }
         #endregion
 
         #region NodeDepth
@@ -282,7 +376,7 @@ namespace Easy_Algorithms.Tests
             root.right.right = new NodeDepthsClass.BinaryTree(7);
             int actual = NodeDepthsClass.NodeDepths(root);
             Assert.Equal(16, actual);
-        } 
+        }
         #endregion
 
         #region BranchSums
@@ -323,14 +417,14 @@ namespace Easy_Algorithms.Tests
             }
         }
 
-        [Fact(Skip = "Failing Unit test")]
+        [Fact]
         public void BranchSumsTest1()
         {
             TestBinaryTree tree = new TestBinaryTree(1).Insert(
                 new List<int>() { 2, 3, 4, 5, 6, 7, 8, 9, 10 });
             List<int> expected = new List<int>() { 15, 16, 18, 10, 11 };
             Assert.True(BranchSumsClass.BranchSums(tree).SequenceEqual(expected));
-        } 
+        }
         #endregion
 
         #region FindClosestValueInBst
@@ -350,7 +444,7 @@ namespace Easy_Algorithms.Tests
             var expected = 13;
             var actual = FindClosestValueInBstClass.FindClosestValueInBst(root, 12);
             Assert.Equal(expected, actual);
-        } 
+        }
         #endregion
 
         #region EvaluateExpressionTree
@@ -365,7 +459,7 @@ namespace Easy_Algorithms.Tests
             var expected = 6;
             var actual = new EvaluateExpressionTreeClass().EvaluateExpressionTree(tree);
             Assert.True(expected == actual);
-        } 
+        }
         #endregion
 
         #region NonConstructibleChange
@@ -376,7 +470,7 @@ namespace Easy_Algorithms.Tests
             int expected = 20;
             var actual = new NonConstructibleChangeClass().NonConstructibleChange(input);
             Assert.True(expected == actual);
-        } 
+        }
         #endregion
 
         #region SortedSquaredArray
@@ -390,7 +484,7 @@ namespace Easy_Algorithms.Tests
             {
                 Assert.True(expected[i] == actual[i]);
             }
-        } 
+        }
         #endregion
 
         #region TournamentWinner
@@ -418,7 +512,7 @@ namespace Easy_Algorithms.Tests
             string expected = "Python";
             var actual = new TournamentWinnerClass().TournamentWinner(competitions, results);
             Assert.True(expected == actual);
-        } 
+        }
         #endregion
 
         #region TransposeMatrix
@@ -441,7 +535,7 @@ namespace Easy_Algorithms.Tests
                     Assert.True(expected[i, j] == actual[i, j]);
                 }
             }
-        } 
+        }
         #endregion
 
         #region IsValidSubsequence
@@ -457,7 +551,7 @@ namespace Easy_Algorithms.Tests
             };
 
             Assert.True(ValidateSubsequenceClass.IsValidSubsequence(array, sequence));
-        } 
+        }
         #endregion
 
         #region TwoNumberSum
@@ -468,7 +562,7 @@ namespace Easy_Algorithms.Tests
             Assert.True(output.Length == 2);
             Assert.True(Array.Exists(output, e => e == -1));
             Assert.True(Array.Exists(output, e => e == 11));
-        } 
+        }
         #endregion
 
         #region SumTwoSmallestNumbers
@@ -491,7 +585,7 @@ namespace Easy_Algorithms.Tests
         {
             int[] numbers = { 10, 343445353, 3453445, 2147483647 };
             Assert.Equal(3453455, SumTwoSmallestNumbersClass.SumTwoSmallestNumbers(numbers));
-        } 
+        }
         #endregion
 
         #region StringExtensions
@@ -507,7 +601,7 @@ namespace Easy_Algorithms.Tests
             Assert.False(actual);
             Assert.True(actualC);
             Assert.False(actualD);
-        } 
+        }
         #endregion
 
         #region QuickSort
@@ -524,7 +618,7 @@ namespace Easy_Algorithms.Tests
 
             //ASSERT					 
             Assert.Equal(array, sortedArray);
-        } 
+        }
         #endregion
 
         #region MinMax
@@ -534,7 +628,7 @@ namespace Easy_Algorithms.Tests
             Assert.Equal(new int[] { -1, 20 }, MinMaxClass.MinMax(new int[] { 1, 2, 5, -1, 12, 20 }));
             Assert.Equal(new int[] { 1, 5 }, MinMaxClass.MinMax(new int[] { 1, 2, 3, 4, 5 }));
             Assert.Equal(new int[] { -3, 5 }, MinMaxClass.MinMax(new int[] { 1, 2, -3, 4, 5 }));
-        } 
+        }
         #endregion
 
         #region InsertionSort
@@ -550,7 +644,7 @@ namespace Easy_Algorithms.Tests
 
             //ASSERT					 
             Assert.Equal(array, sortedArray);
-        } 
+        }
         #endregion
 
         #region HighAndLow
@@ -564,7 +658,7 @@ namespace Easy_Algorithms.Tests
         public void Method_Should_Return_False()
         {
             Assert.Equal("3 1", HighAndLowClass.HighAndLow("1 2 3"));
-        } 
+        }
         #endregion
 
         #region DescendingOrder
@@ -573,7 +667,7 @@ namespace Easy_Algorithms.Tests
         {
             var expected = DescendingOrderClass.DescendingOrder(42145);
             Assert.Equal(54421, expected);
-        } 
+        }
         #endregion
 
         #region BreakCamelCaseClass
@@ -600,7 +694,7 @@ namespace Easy_Algorithms.Tests
         #endregion
 
         #region WellofIdeasEasyVersion
-        [Fact(Skip ="Failing Unit tests")]
+        [Fact(Skip = "Failing Unit tests")]
         public void WellofIdeasEasyVersionTest1()
         {
             Assert.Equal("Fail!", WellofIdeasEasyVersionClass.Well(new string[] { "bad", "bad", "bad" }));
@@ -613,7 +707,7 @@ namespace Easy_Algorithms.Tests
         /// <summary>
         /// Fix this later
         /// </summary>
-        
+
         #region ArraysAreEqual
         [Fact]
         public void Array_Should_Return_True()
@@ -821,9 +915,9 @@ namespace Easy_Algorithms.Tests
         /// This needs to be completed
         /// </summary>
         /// <exception cref="NotImplementedException"></exception>
-        
+
         #region SubsequenceWithMaxSum
-        [Fact(Skip ="Not Implemented")]
+        [Fact(Skip = "Not Implemented")]
         public void SubsequenceWithMaxSum()
         {
             throw new NotImplementedException();
@@ -957,7 +1051,7 @@ namespace Easy_Algorithms.Tests
         [Fact]
         public void MaximalSequenceOfIncreasingElementsUnit()
         {
-            
+
         }
         #endregion
 
@@ -1037,7 +1131,7 @@ namespace Easy_Algorithms.Tests
         #endregion
 
         #region Lexicographically
-        [Fact(Skip ="Failing Tests")]
+        [Fact(Skip = "Failing Tests")]
         public void Lexicographically_Should_Return_First_Lexicographically()
         {
             //ARRANGE					 
@@ -1050,7 +1144,7 @@ namespace Easy_Algorithms.Tests
 
             //ASSERT					 
             Assert.Equal(expected, actial);
-        } 
+        }
         #endregion
     }
 }

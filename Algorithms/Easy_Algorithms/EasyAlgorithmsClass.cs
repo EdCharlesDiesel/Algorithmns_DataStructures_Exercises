@@ -5,796 +5,72 @@ namespace Easy_Algorithms
 {
     public class EasyAlgorithmsClass
     {
-        #region Semordnilap
-        /// <summary>
-        /// 
-        /// </summary>
-        public class SemordnilapClass
+        #region TwoNumberSum
+        public class TwoNumberSumClass
         {
-            public List<List<string>> Semordnilap(string[] words)
+            /// <summary>
+            /// Write a function that takes in a non-empty array of distinct integers and an integer 
+            /// representing a target sum. If any two numbers in the input array sum the target sum,
+            /// the function should return them in an array, in any order. If no two numbers sum up to 
+            /// to the target sum up to the target sum, the function should return an empty.
+            /// 
+            /// Note that the target sum has to be obtained by summing two different integers in
+            /// the array; you can't add a single integer to itself in order to obtain the target sum.
+            /// 
+            /// You can assume that there will be at most pair of numbers summing up to the target sum.
+            /// </summary>
+            /// <param name="array"></param>
+            /// <param name="targetSum"></param>
+            /// <returns></returns>
+            /// <exception cref="NotImplementedException"></exception>
+            public int[] TwoNumberSum(int[] array, int targetSum)
             {
-                HashSet<string> wordsSet = new HashSet<string>();
-                List<List<string>> semordnilapPairs = new List<List<string>>();
-
-                foreach (var word in words)
+                for (var i = 0; i < array.Length - 1; i++)
                 {
-                    char[] chars = word.ToCharArray();
-                    Array.Reverse(chars);
-                    string reverse = new string(chars);
-                    if (wordsSet.Contains(reverse) && !reverse.Equals(word))
+                    var firstNum = array[i];
+                    for (var j = i + 1; j < array.Length; j++)
                     {
-                        List<string> semordnilapPair = new List<string> { word, reverse };
-                        semordnilapPairs.Add(semordnilapPair);
-                        wordsSet.Remove(word);
-                        wordsSet.Remove(reverse);
-                    }
-                }
-
-                return semordnilapPairs;
-            }
-        } 
-        #endregion
-
-        #region RunLengthEncoding
-        /// <summary>
-        /// Write a function that takes in a non-empty
-        /// string and returns it's run-length encoding.
-        /// From Wikipedia, "run-length encoding is a form
-        /// of lossless data compression in which runs of
-        /// data are stored as a single data value and count
-        /// rather than as the original run". For this problem,
-        /// a run of data is any sequence consecutive, identical
-        /// characters. So the run "AAA" would be run-length-encoded
-        /// as "3A".
-        /// 
-        /// To make things more complicated, however, the input string
-        /// can contain all sorts of special characters, including numbers
-        /// And since encoded data must be decodable, this means that
-        /// we can't naively run-length-encode long runs. For example,
-        /// the run "AAAAAAAAAAAA" (12A)s, can naively be decoded as "12A"
-        /// sinc this string can be decoded as either "AAAAAAAAAAAA" or
-        /// "1AA". Thus, long runs(runs of 10 or more characters) should
-        /// be encoded in a split fashion; the aforementioned run should be
-        /// encoded as "9A3A".
-        /// </summary>
-        /// <param name="stringArray"></param>
-        /// <returns>String</returns>
-        public class RunLengthEncodingClass
-        {
-            public string RunLengthEncoding(string stringArray)
-            {
-                //O(n) time | O(n) space - where n is the length of the input string
-                StringBuilder stringBuilder = new StringBuilder();
-                int currentLength = 1;
-                for (int i = 1; i < stringArray.Length; i++)
-                {
-                    char currentChar = stringArray[i];
-                    char previousChar = stringArray[i - 1];
-
-                    if ((currentChar != previousChar) || (currentLength == 9))
-                    {
-                        stringBuilder.Append(currentLength.ToString());
-                        stringBuilder.Append(previousChar);
-                        currentLength = 0;
-                    }
-
-                    currentLength += 1;
-                }
-
-                stringBuilder.Append(currentLength.ToString());
-
-                stringBuilder.Append(stringArray[stringArray.Length - 1]);
-
-                return stringBuilder.ToString();
-            }
-        }
-        #endregion
-
-        #region ReverseWordsInString
-        /// <summary>
-        /// 
-        /// </summary>
-        public class ReverseWordsInStringClass
-        {
-            public string ReverseWordsInString(string str)
-            {
-                List<string> words = new List<string>();
-                int startOfWord = 0;
-
-                for (int i = 0; i < str.Length; i++)
-                {
-                    char charecter = str[i];
-
-                    if (charecter == ' ')
-                    {
-                        words.Add(str.Substring(startOfWord, i - startOfWord));
-                        startOfWord = i;
-                    }
-                    else if (str[startOfWord] == ' ')
-                    {
-                        words.Add(" ");
-                        startOfWord = i;
-                    }
-                }
-
-                words.Add(str.Substring(startOfWord));
-                words.Reverse();
-                return String.Join(" ", words);
-            }
-        } 
-        #endregion
-
-        #region IsPalindrome
-        /// <summary>
-        /// 
-        /// </summary>
-        public class PalindromeCheckClass
-        {
-            // O(n) time | O(1) space
-            public static bool IsPalindrome(string str)
-            {
-                int leftIdx = 0;
-                int rightIdx = str.Length - 1;
-                while (leftIdx < rightIdx)
-                {
-                    if (str[leftIdx] != str[rightIdx])
-                    {
-                        return false;
-                    }
-                    leftIdx++;
-                    rightIdx--;
-                }
-                return true;
-            }
-        } 
-        #endregion
-
-        #region GenerateDocument
-        /// <summary>
-        /// 
-        /// </summary>
-        public class GenerateDocumentClass
-        {
-            public bool GenerateDocument(string characters, string document)
-            {
-                HashSet<char> alreadyCounted = new HashSet<char>();
-
-                for (int index = 0; index < document.Length; index++)
-                {
-                    char character = document[index];
-                    if (alreadyCounted.Contains(character))
-                    {
-                        continue;
-                    }
-
-                    int documentFrequency = CountcharFrequency(character, document);
-                    int characterFrequency = CountcharFrequency(character, characters);
-                    if (documentFrequency > characterFrequency)
-                    {
-                        return false;
-                    }
-
-                    alreadyCounted.Add(character);
-                }
-
-                return true;
-            }
-
-            private int CountcharFrequency(char character, string target)
-            {
-                int frequency = 0;
-                for (int index = 0; index < target.Length; index++)
-                {
-                    char c = target[index];
-                    if (c == character)
-                    {
-                        frequency += 1;
-                    }
-                }
-
-                return frequency;
-            }
-        } 
-        #endregion
-
-        #region FirstNonRepeatingCharacter
-        /// <summary>
-        /// 
-        /// </summary>
-        public class FirstNonRepeatingCharacterClass
-        {
-            public int FirstNonRepeatingCharacter(string str)
-            {
-                Dictionary<Char, int> charaterFrequency = new Dictionary<Char, int>();
-
-                for (int i = 0; i < str.Length; i++)
-                {
-                    char character = str[i];
-                    charaterFrequency[character] =
-                        charaterFrequency.GetValueOrDefault(character, 0) + 1;
-                }
-
-                for (int i = 0; i < str.Length; i++)
-                {
-                    char character = str[i];
-                    if (charaterFrequency[character] == 1)
-                    {
-                        return i;
-                    }
-                }
-
-                return -1;
-            }
-        } 
-        #endregion
-
-        #region CommonCharacters
-        /// <summary>
-        /// 
-        /// </summary>
-        public class CommonCharactersClass
-        {
-            public string[] CommonCharacters(string[] strings)
-            {
-                Dictionary<char, int> characterCounts = new Dictionary<char, int>();
-                foreach (var str in strings)
-                {
-                    HashSet<char> uniqueStringChars = new HashSet<char>();
-                    for (int i = 0; i < str.Length; i++)
-                    {
-                        uniqueStringChars.Add(str[i]);
-                    }
-
-                    foreach (var character in uniqueStringChars)
-                    {
-                        if (!characterCounts.ContainsKey(character))
+                        var secondNum = array[j];
+                        if (firstNum + secondNum == targetSum)
                         {
-                            characterCounts[character] = 0;
-                        }
-                        characterCounts[character] = characterCounts[character] + 1;
-                    }
-                }
-
-                List<char> finalChars = new List<char>();
-                foreach (var characterCount in characterCounts)
-                {
-                    char charater = characterCount.Key;
-                    int count = characterCount.Value;
-                    if (count == strings.Length)
-                    {
-                        finalChars.Add(charater);
-                    }
-                }
-
-                string[] finalCharArray = new string[finalChars.Count];
-                for (int i = 0; i < finalCharArray.Length; i++)
-                {
-                    finalCharArray[i] = finalChars[i].ToString();
-                }
-                return finalCharArray;
-            }
-        } 
-        #endregion
-
-        #region CaesarCypherEncryptor
-        /// <summary>
-        /// Given a non empty string of lowercase letters and non-negative
-        /// integer representing a key. write a function that returns a
-        /// new string obtained by shifting every letter in the input
-        /// string by k position in the alphabet,
-        /// where k is the key.
-        /// 
-        /// Note that letters should "wrap" around;
-        /// in other words, the letter  shifted by
-        /// one returns letter a
-        /// 
-        /// </summary>
-        public class CaesarCipherEncryptorClass
-        {
-            // O(n) time | O(n) space
-            public static string CaesarCypherEncryptor(string str, int key)
-            {
-                char[] newLetters = new char[str.Length];
-                int newKey = key % 26;
-                for (int i = 0; i < str.Length; i++)
-                {
-                    newLetters[i] = GetNewLetter(str[i], newKey);
-                }
-                return new string(newLetters);
-            }
-            public static char GetNewLetter(char letter, int key)
-            {
-                int newLetterCode = letter + key;
-                return newLetterCode <= 122 ? (char)newLetterCode : (char)(96 + newLetterCode % 122);
-            }
-        } 
-        #endregion
-
-        #region RemoveDuplicatesFromLinkedList
-        /// <summary>
-        /// 
-        /// </summary>
-        public class RemoveDuplicatesFromLinkedListClass
-        {
-            public LinkedList RemoveDuplicatesFromLinkedList(LinkedList linkedList)
-            {
-                LinkedList currentNode = linkedList;
-                while (currentNode != null)
-                {
-                    LinkedList nextDistince = currentNode.next;
-                    while (nextDistince != null && nextDistince.value == currentNode.value)
-                    {
-                        nextDistince = nextDistince.next;
-                    }
-
-                    currentNode.next = nextDistince;
-                    currentNode = nextDistince;
-                }
-
-                return linkedList;
-            }
-
-            public class LinkedList
-            {
-                public int value;
-                public LinkedList next = null;
-                public LinkedList(int value)
-                {
-                    this.value = value;
-                }
-            }
-        } 
-        #endregion
-
-        #region MiddleNode
-        /// <summary>
-        /// 
-        /// </summary>
-        public class MiddleNodeClass
-        {
-            public class LinkedList
-            {
-                public int value;
-                public LinkedList next;
-
-                public LinkedList(int value)
-                {
-                    this.value = value;
-                    this.next = null;
-                }
-            }
-
-            public LinkedList MiddleNode(LinkedList linkedList)
-            {
-                LinkedList slowNode = linkedList;
-                LinkedList fastnode = linkedList;
-                while (fastnode != null && fastnode.next != null)
-                {
-                    slowNode = fastnode.next;
-                    fastnode = fastnode.next;
-                }
-
-                return slowNode;
-            }
-        } 
-        #endregion
-
-        #region TandemBicycle
-        /// <summary>
-        /// 
-        /// </summary>
-        public class TandemBicycleClass
-        {
-            public int TandemBicycle(int[] redShirtSpeeds, int[] blueShirtSpeeds, bool fastest)
-            {
-                Array.Sort(redShirtSpeeds);
-                Array.Sort(blueShirtSpeeds);
-
-                if (!fastest)
-                {
-                    ReverseArrayInPlace(redShirtSpeeds);
-                }
-
-                var totalSpeed = 0;
-                for (int index = 0; index < redShirtSpeeds.Length; index++)
-                {
-                    var riderOne = redShirtSpeeds[index];
-                    var riderTwo = blueShirtSpeeds[blueShirtSpeeds.Length - index - 1];
-                    totalSpeed += Math.Max(riderOne, riderTwo);
-                }
-                return totalSpeed;
-            }
-
-            private void ReverseArrayInPlace(int[] redShirtSpeeds)
-            {
-                var start = 0;
-                var end = redShirtSpeeds.Length - 1;
-                while (start < end)
-                {
-                    var temp = redShirtSpeeds[start];
-                    redShirtSpeeds[start] = redShirtSpeeds[end];
-                    redShirtSpeeds[end] = temp;
-                    start += 1;
-                    end -= 1;
-                }
-            }
-        } 
-        #endregion
-
-        #region OptimalFreelancing
-        /// <summary>
-        /// 
-        /// </summary>
-        public class OptimalFreelancingClass
-        {
-            public int OptimalFreelancing(Dictionary<string, int>[] jobs)
-            {
-                const int LENGTH_OF_WEEK = 7;
-                int profit = 0;
-                Array.Sort(jobs, Comparer<Dictionary<string, int>>.Create((jobOne, JobTwo) => JobTwo["payment"]
-                .CompareTo(jobOne["payment"])
-                        )
-                );
-
-                bool[] timeline = new bool[LENGTH_OF_WEEK];
-
-                foreach (var job in jobs)
-                {
-                    int maxTime = Math.Min(job["deadline"], LENGTH_OF_WEEK);
-                    for (int time = maxTime - 1; time >= 0; time--)
-                    {
-                        if (!timeline[time])
-                        {
-                            timeline[time] = true;
-                            profit += job["payment"];
-                            break;
+                            return new int[] { firstNum, secondNum };
                         }
                     }
                 }
 
-                return profit;
+                return Array.Empty<int>();
             }
-        } 
+        }
         #endregion
 
-        #region MinimumWaitingTime
+        #region IsValidSubsequence
         /// <summary>
+        /// Given two non-empty array of integers, write a function that determines whether the second
+        /// array is a subsequence of the first one.
         /// 
+        /// A subsequence of an array is a set of numbers that aren't necessarily adjacent in the array 
+        /// but that are in the same order as they appear in the array. Fo instance, the number [1,3,4]
+        /// form a subsequence of an array [1,2,3,4]. and so do the number [2,4]. note that a single 
+        /// number in an array and the array itself are both valid subsequence of the array.
         /// </summary>
-        public class MinimumWaitingTimeClass
+        public static class ValidateSubsequenceClass
         {
-            public int MinimumWaitingTime(int[] queries)
+            public static bool IsValidSubsequence(List<int> array, List<int> sequence)
             {
-                Array.Sort(queries);
-                int totailWaitingTime = 0;
-                for (int index = 0; index < queries.Length; index++)
+                var sequenceIndex = 0;
+                foreach (var val in array)
                 {
-
-                    int duration = queries[index];
-                    int queriesLeft = queries.Length - (index + 1);
-                    totailWaitingTime += duration * queriesLeft;
-                }
-                return totailWaitingTime;
-            }
-        } 
-        #endregion
-
-        #region ClassPhotos
-        /// <summary>
-        /// 
-        /// </summary>
-        public class ClassPhotosClass
-        {
-            public bool ClassPhotos(List<int> redShirtHeights, List<int> blueShirtHeights)
-            {
-                redShirtHeights.Sort((a, b) => b.CompareTo(a));
-                blueShirtHeights.Sort((a, b) => b.CompareTo(a));
-
-                string shirtColorInFirstRow =
-                    (redShirtHeights[0] < blueShirtHeights[0]) ? "RED" : "BLUE";
-                for (int i = 0; i < redShirtHeights.Count; i++)
-                {
-                    int redShirtHeight = redShirtHeights[i];
-                    int blueShirtHeight = blueShirtHeights[i];
-
-                    if (shirtColorInFirstRow == "RED")
+                    if (sequenceIndex == sequence.Count)
                     {
-                        if (redShirtHeight >= blueShirtHeight)
-                        {
-                            return false;
-                        }
+                        break;
                     }
-                    else
+
+                    if (sequence[sequenceIndex] == val)
                     {
-                        if (blueShirtHeight >= redShirtHeight)
-                        {
-                            return false;
-                        }
+                        sequenceIndex++;
                     }
                 }
-                return true;
-            }
-        } 
-        #endregion
-
-        #region DepthFirstSearch
-        /// <summary>
-        /// 
-        /// </summary>
-        public class DepthFirstSearchClass
-        {
-            public class Node
-            {
-                public string name;
-                public List<Node> children = new List<Node>();
-
-                public Node(string name)
-                {
-                    this.name = name;
-                }
-
-                public List<string> DepthFirstSearch(List<string> array)
-                {
-                    array.Add(name);
-                    for (int i = 0; i < children.Count; i++)
-                    {
-                        children[i].DepthFirstSearch(array);
-                    }
-                    return array;
-                }
-
-                public Node AddChild(string name)
-                {
-                    Node child = new Node(name);
-                    children.Add(child);
-                    return this;
-                }
-            }
-        } 
-        #endregion
-
-        #region NodeDepths
-        // Average case: when the tree is balanced
-        // O(n) time | O(h) space - where n is the number of nodes in
-        // the Binary Tree and h is the height of the Binary Tree
-        public class NodeDepthsClass
-        {
-            public class BinaryTree
-            {
-                public int value;
-                public BinaryTree left;
-                public BinaryTree right;
-                public BinaryTree(int value)
-                {
-                    this.value = value;
-                    left = null;
-                    right = null;
-                }
-            }
-
-            public class Level
-            {
-                public BinaryTree root;
-                public int depth;
-                public Level(BinaryTree root, int depth)
-                {
-                    this.root = root;
-                    this.depth = depth;
-                }
-            }
-            public static int NodeDepths(BinaryTree root)
-            {
-                int sumOfDepths = 0;
-                Stack<Level> stack = new Stack<Level>();
-                stack.Push(new Level(root, 0));
-                while (stack.Count > 0)
-                {
-                    Level top = stack.Pop();
-                    BinaryTree node = top.root;
-                    int depth = top.depth;
-                    if (node == null) continue;
-                    sumOfDepths += depth;
-                    stack.Push(new Level(node.left, depth + 1));
-                    stack.Push(new Level(node.right, depth + 1));
-                }
-                return sumOfDepths;
-            }
-        }
-
-
-        public class NodeDepthsClass_Solution2
-        {
-            // Average case: when the tree is balanced
-            // O(n) time | O(h) space - where n is the number of nodes in
-            // the Binary Tree and h is the height of the Binary Tree
-            public static int NodeDepths(BinaryTree root)
-            {
-                return nodeDepthsHelper(root, 0);
-            }
-
-            public static int nodeDepthsHelper(BinaryTree root, int depth)
-            {
-                if (root == null) return 0;
-                return depth + nodeDepthsHelper(root.left, depth + 1) + nodeDepthsHelper(root.right,
-                depth + 1);
-            }
-        }
-
-
-
-        #endregion
-
-        #region BranchSums
-        /// <summary>
-        /// 
-        /// </summary>
-        public class BranchSumsClass
-        {
-            public class BinaryTree
-            {
-                public int value;
-                public BinaryTree left;
-                public BinaryTree right;
-                public BinaryTree(int value)
-                {
-                    this.value = value;
-                    this.left = null;
-                    this.right = null;
-                }
-            }
-            public static List<int> BranchSums(BinaryTree root)
-            {
-                List<int> sums = new List<int>();
-                calculateBranchSums(root, 0, sums);
-                return sums;
-            }
-
-            public static void calculateBranchSums(
-                BinaryTree node, int runningSum, List<int> sums)
-            {
-                if (node == null) return;
-                int newRunningSum = runningSum + node.value;
-                if (node.left == null && node.right == null)
-                {
-                    sums.Add(newRunningSum);
-                    return;
-                }
-            }
-        }
-        #endregion
-
-        #region FindClosestValueInBst
-        /// <summary>
-        /// Write a function that takes in a Binary Tree(BTS) and a target integer value and returns
-        /// the closest value to that target value contained in the BTS.
-        ///
-        /// You can assume that there will only be one closet value.
-        ///
-        /// Each BTS node has an integer valie, a left child node, and right child node.A node is
-        /// said to be a valid BTS node id and only id it satisfies the BTS property: its value is
-        /// strictly greater than the values of every node to its value; its value is less than or
-        /// equal to the values of every node to its right
-        /// tha
-        /// </summary>
-        public static class FindClosestValueInBstClass
-        {
-            // Average: O(log(n)) time | O(log(n)) space
-            // Worst: O(n) time | O(n) space
-            public static int FindClosestValueInBst(Bst tree, int target)
-            {
-                return FindClosestValueInBst(tree, target, Int32.MaxValue);
-            }
-
-            private static int FindClosestValueInBst(Bst tree, int target, double closest)
-            {
-                if (Math.Abs(target - closest) > Math.Abs(target - tree.value))
-                {
-                    closest = tree.value;
-                }
-                if (target < tree.value && tree.left != null)
-                {
-                    return FindClosestValueInBst(tree.left, target, closest);
-                }
-                else if (target > tree.value && tree.right != null)
-                {
-                    return FindClosestValueInBst(tree.right, target, closest);
-                }
-                else
-                {
-                    return (int)closest;
-                }
-            }
-            public class Bst
-            {
-                public int value;
-                public Bst left = null!;
-                public Bst right = null!;
-                public Bst(int value)
-                {
-                    this.value = value;
-                }
-            }
-        }
-        #endregion
-
-        #region EvaluateExpressionTree
-        /// <summary>
-        /// 
-        /// </summary>
-        public class EvaluateExpressionTreeClass
-        {
-            public int EvaluateExpressionTree(BinaryTree tree)
-            {
-                if (tree.value >= 0)
-                {
-                    return tree.value;
-                }
-
-                int leftValue = EvaluateExpressionTree(tree.left);
-                int rightValue = EvaluateExpressionTree(tree.right);
-
-                if (tree.value == -1)
-                {
-                    return leftValue + rightValue;
-                }
-                else if (tree.value == -2)
-                {
-                    return leftValue - rightValue;
-                }
-                else if (tree.value == -3)
-                {
-                    return leftValue / rightValue;
-                }
-
-                return leftValue * rightValue;
-            }
-
-
-
-            public class BinaryTree
-            {
-                public int value;
-                public BinaryTree left = null;
-                public BinaryTree right = null;
-
-                public BinaryTree(int value)
-                {
-                    this.value = value;
-                }
-            }
-        }
-        #endregion
-
-        #region NonConstructibleChange
-        /// <summary>
-        /// Given an array of positive integers representing the values of coins in your possession,
-        /// write a function that returns the minimum amount of change (minimum sum of money) that
-        /// you cannot create. The given coins can have any positive integer value and arent 
-        /// necessarily unique (i.e., you can have multiple coins of the same value). 
-        /// 
-        /// For example, if you're given coins = [1,2,5], the minimum amount of change that you
-        /// can't create is 4. If you're given no coins, the minimum amount of change that you can't
-        /// is 1.
-        /// 
-        /// </summary>
-        public class NonConstructibleChangeClass
-        {
-            // O(nlogn) time | O(1) space - where n is the number of coins
-            public int NonConstructibleChange(int[] coins)
-            {
-                Array.Sort(coins);
-
-                var currentChangeCreated = 0;
-                foreach (var coin in coins)
-                {
-                    if (coin > currentChangeCreated + 1)
-                    {
-                        return currentChangeCreated + 1;
-                    }
-                    currentChangeCreated += coin;
-                }
-
-                return currentChangeCreated + 1;
+                return sequenceIndex == sequence.Count;
             }
         }
         #endregion
@@ -895,6 +171,40 @@ namespace Easy_Algorithms
         }
         #endregion
 
+        #region NonConstructibleChange
+        /// <summary>
+        /// Given an array of positive integers representing the values of coins in your possession,
+        /// write a function that returns the minimum amount of change (minimum sum of money) that
+        /// you cannot create. The given coins can have any positive integer value and arent 
+        /// necessarily unique (i.e., you can have multiple coins of the same value). 
+        /// 
+        /// For example, if you're given coins = [1,2,5], the minimum amount of change that you
+        /// can't create is 4. If you're given no coins, the minimum amount of change that you can't
+        /// is 1.
+        /// 
+        /// </summary>
+        public class NonConstructibleChangeClass
+        {
+            // O(nlogn) time | O(1) space - where n is the number of coins
+            public int NonConstructibleChange(int[] coins)
+            {
+                Array.Sort(coins);
+
+                var currentChangeCreated = 0;
+                foreach (var coin in coins)
+                {
+                    if (coin > currentChangeCreated + 1)
+                    {
+                        return currentChangeCreated + 1;
+                    }
+                    currentChangeCreated += coin;
+                }
+
+                return currentChangeCreated + 1;
+            }
+        }
+        #endregion
+
         #region TransposeMatrix
         /// <summary>
         /// You're given a 2D array of integers matrix. Write a function that returns the transpose
@@ -926,72 +236,1052 @@ namespace Easy_Algorithms
         }
         #endregion
 
-        #region IsValidSubsequence
+        #region BranchSums
         /// <summary>
-        /// Given two non-empty array of integers, write a function that determines whether the second
-        /// array is a subsequence of the first one.
+        /// Write a function that takes in a binary tree and returns a list of its branch sums ordered from
+        /// leftmost branch sum to rightmost branch sum.
         /// 
-        /// A subsequence of an array is a set of numbers that aren't necessarily adjacent in the array 
-        /// but that are in the same order as they appear in the array. Fo instance, the number [1,3,4]
-        /// form a subsequence of an array [1,2,3,4]. and so do the number [2,4]. note that a single 
-        /// number in an array and the array itself are both valid subsequence of the array.
+        /// A branch sum is the sum of all the values in a binary tree branch. A binary tree branch is a path
+        /// of nodes in a tree that starts at the root node and ends at any leaf node.
+        /// 
+        /// Each BinaryTree node has an integer value, a left child node, and a right child node. Children
+        /// nodes can either be BinaryTree nodes themselves or None/null.
+        ///          
         /// </summary>
-        public static class ValidateSubsequenceClass
+        public class BranchSumsClass
         {
-            public static bool IsValidSubsequence(List<int> array, List<int> sequence)
+            public class BinaryTree
             {
-                var sequenceIndex = 0;
-                foreach (var val in array)
+                public int value;
+                public BinaryTree? left;
+                public BinaryTree? right;
+                public BinaryTree(int value)
                 {
-                    if (sequenceIndex == sequence.Count)
-                    {
-                        break;
-                    }
-
-                    if (sequence[sequenceIndex] == val)
-                    {
-                        sequenceIndex++;
-                    }
+                    this.value = value;
+                    this.left = null;
+                    this.right = null;
                 }
-                return sequenceIndex == sequence.Count;
+            }
+            public static List<int> BranchSums(BinaryTree root)
+            {
+                List<int> sums = new List<int>();
+                calculateBranchSums(root, 0, sums);
+                return sums;
+            }
+
+            public static void calculateBranchSums(
+                BinaryTree node, int runningSum, List<int> sums)
+            {
+                if (node == null) return;
+                int newRunningSum = runningSum + node.value;
+                if (node.left == null && node.right == null)
+                {
+                    sums.Add(newRunningSum);
+                    return;
+                }
+
+                calculateBranchSums(node.left,newRunningSum, sums);
+                calculateBranchSums(node.right, newRunningSum, sums);
+            }
+
+            
+        }
+        #endregion
+
+        #region NodeDepths
+        /// <summary>
+        /// The distance between a node in a Binary Tree and the tree's root is called the node's
+        /// depth. Write a function that takes in a Binary Tree and returns the sum of its node's 
+        /// depths. Each BinaryTree node has an integer value, a left child node, and a right child
+        /// node. Children nodes can either be BinaryTree nodes themselves or Node/null.
+        /// </summary>
+        public class NodeDepthsClass
+        {
+            // Average case: when the tree is balanced
+            // O(n) time | O(h) space - where n is the number of nodes in
+            // the Binary Tree and h is the height of the Binary Tree
+            public class BinaryTree
+            {
+                public int value;
+                public BinaryTree left;
+                public BinaryTree right;
+                public BinaryTree(int value)
+                {
+                    this.value = value;
+                    left = null;
+                    right = null;
+                }
+            }
+
+            public class Level
+            {
+                public BinaryTree root;
+                public int depth;
+                public Level(BinaryTree root, int depth)
+                {
+                    this.root = root;
+                    this.depth = depth;
+                }
+            }
+            public static int NodeDepths(BinaryTree root)
+            {
+                int sumOfDepths = 0;
+                Stack<Level> stack = new Stack<Level>();
+                stack.Push(new Level(root, 0));
+                while (stack.Count > 0)
+                {
+                    Level top = stack.Pop();
+                    BinaryTree node = top.root;
+                    int depth = top.depth;
+                    if (node == null) continue;
+                    sumOfDepths += depth;
+                    stack.Push(new Level(node.left, depth + 1));
+                    stack.Push(new Level(node.right, depth + 1));
+                }
+                return sumOfDepths;
+            }
+        }
+
+
+        public class NodeDepthsClass_Solution2
+        {
+            // Average case: when the tree is balanced
+            // O(n) time | O(h) space - where n is the number of nodes in
+            // the Binary Tree and h is the height of the Binary Tree
+            public static int NodeDepths(BinaryTree root)
+            {
+                return nodeDepthsHelper(root, 0);
+            }
+
+            public static int nodeDepthsHelper(BinaryTree root, int depth)
+            {
+                if (root == null) return 0;
+                return depth + nodeDepthsHelper(root.left, depth + 1) + nodeDepthsHelper(root.right,
+                depth + 1);
+            }
+        }
+
+
+
+        #endregion
+
+        #region EvaluateExpressionTree
+        /// <summary>
+        /// You're given a binary expression tree. Write a function to evaluate this tree
+        /// mathematically and return a single resulting integer.
+        /// 
+        /// All leaf nodes in the tree represent operands, which will always be positive 
+        /// integers. All of the other nodes represent operators. There are 4 operators
+        /// supported, each of which is represented by a negative integer:
+        /// -> -1: Addition operator, adding the left and right subtrees/
+        /// -> -2: Subtraction operator, subtracting the right subtree from the left subtree.
+        /// -> -3: Division operators, dividing the left subtree by the right subtree. If the result
+        /// is a decimal, it should be rounded towards zero.
+        /// -> -4: Multiplication operator, multiplying the left and right subtrees.
+        ///
+        /// You can assume the tree will always be a valid expression tree. Each operator also
+        /// works as a grouping symbol, meaning the bottom of the tree is always evaluated first,
+        /// regardless of the operator.
+        ///
+        /// tree =   -1
+        ///         /   \
+        ///       -2    -3
+        ///       / \   / \
+        ///     -4   2 8   3
+        ///     / \
+        ///     2  3
+        ///
+        /// Sample output
+        /// 6 // (((2*3) -2) + (8/3))
+        /// </summary>
+        public class EvaluateExpressionTreeClass
+        {
+            public int EvaluateExpressionTree(BinaryTree tree)
+            {
+                if (tree.value >= 0)
+                {
+                    return tree.value;
+                }
+
+                int leftValue = EvaluateExpressionTree(tree.left);
+                int rightValue = EvaluateExpressionTree(tree.right);
+
+                if (tree.value == -1)
+                {
+                    return leftValue + rightValue;
+                }
+                else if (tree.value == -2)
+                {
+                    return leftValue - rightValue;
+                }
+                else if (tree.value == -3)
+                {
+                    return leftValue / rightValue;
+                }
+
+                return leftValue * rightValue;
+            }
+            public class BinaryTree
+            {
+                public int value;
+                public BinaryTree left = null;
+                public BinaryTree right = null;
+
+                public BinaryTree(int value)
+                {
+                    this.value = value;
+                }
             }
         }
         #endregion
 
-        #region TwoNumberSum
-        public class TwoNumberSumClass
+        #region DepthFirstSearch
+        /// <summary>
+        /// 
+        /// </summary>
+        public class DepthFirstSearchClass
         {
-            /// <summary>
-            /// Write a function that takes in a non-empty array of distinct integers and an integer 
-            /// representing a target sum. If any two numbers in the input array sum the target sum,
-            /// the function should return them in an array, in any order. If no two numbers sum up to 
-            /// to the target sum up to the target sum, the function should return an empty.
-            /// 
-            /// Note that the target sum has to be obtained by summing two different integers in
-            /// the array; you can't add a single integer to itself in order to obtain the target sum.
-            /// 
-            /// You can assume that there will be at most pair of numbers summing up to the target sum.
-            /// </summary>
-            /// <param name="array"></param>
-            /// <param name="targetSum"></param>
-            /// <returns></returns>
-            /// <exception cref="NotImplementedException"></exception>
-            public int[] TwoNumberSum(int[] array, int targetSum)
+            public class Node
             {
-                for (var i = 0; i < array.Length - 1; i++)
+                public string name;
+                public List<Node> children = new List<Node>();
+
+                public Node(string name)
                 {
-                    var firstNum = array[i];
-                    for (var j = i + 1; j < array.Length; j++)
+                    this.name = name;
+                }
+
+                public List<string> DepthFirstSearch(List<string> array)
+                {
+                    array.Add(name);
+                    for (int i = 0; i < children.Count; i++)
                     {
-                        var secondNum = array[j];
-                        if (firstNum + secondNum == targetSum)
+                        children[i].DepthFirstSearch(array);
+                    }
+                    return array;
+                }
+
+                public Node AddChild(string name)
+                {
+                    Node child = new Node(name);
+                    children.Add(child);
+                    return this;
+                }
+            }
+        }
+        #endregion
+
+        #region MinimumWaitingTime
+        /// <summary>
+        /// 
+        /// </summary>
+        public class MinimumWaitingTimeClass
+        {
+            public int MinimumWaitingTime(int[] queries)
+            {
+                Array.Sort(queries);
+                int totailWaitingTime = 0;
+                for (int index = 0; index < queries.Length; index++)
+                {
+
+                    int duration = queries[index];
+                    int queriesLeft = queries.Length - (index + 1);
+                    totailWaitingTime += duration * queriesLeft;
+                }
+                return totailWaitingTime;
+            }
+        }
+        #endregion
+
+        #region ClassPhotos
+        /// <summary>
+        /// 
+        /// </summary>
+        public class ClassPhotosClass
+        {
+            public bool ClassPhotos(List<int> redShirtHeights, List<int> blueShirtHeights)
+            {
+                redShirtHeights.Sort((a, b) => b.CompareTo(a));
+                blueShirtHeights.Sort((a, b) => b.CompareTo(a));
+
+                string shirtColorInFirstRow =
+                    (redShirtHeights[0] < blueShirtHeights[0]) ? "RED" : "BLUE";
+                for (int i = 0; i < redShirtHeights.Count; i++)
+                {
+                    int redShirtHeight = redShirtHeights[i];
+                    int blueShirtHeight = blueShirtHeights[i];
+
+                    if (shirtColorInFirstRow == "RED")
+                    {
+                        if (redShirtHeight >= blueShirtHeight)
                         {
-                            return new int[] { firstNum, secondNum };
+                            return false;
+                        }
+                    }
+                    else
+                    {
+                        if (blueShirtHeight >= redShirtHeight)
+                        {
+                            return false;
+                        }
+                    }
+                }
+                return true;
+            }
+        }
+        #endregion
+
+        #region TandemBicycle
+        /// <summary>
+        /// 
+        /// </summary>
+        public class TandemBicycleClass
+        {
+            public int TandemBicycle(int[] redShirtSpeeds, int[] blueShirtSpeeds, bool fastest)
+            {
+                Array.Sort(redShirtSpeeds);
+                Array.Sort(blueShirtSpeeds);
+
+                if (!fastest)
+                {
+                    ReverseArrayInPlace(redShirtSpeeds);
+                }
+
+                var totalSpeed = 0;
+                for (int index = 0; index < redShirtSpeeds.Length; index++)
+                {
+                    var riderOne = redShirtSpeeds[index];
+                    var riderTwo = blueShirtSpeeds[blueShirtSpeeds.Length - index - 1];
+                    totalSpeed += Math.Max(riderOne, riderTwo);
+                }
+                return totalSpeed;
+            }
+
+            private void ReverseArrayInPlace(int[] redShirtSpeeds)
+            {
+                var start = 0;
+                var end = redShirtSpeeds.Length - 1;
+                while (start < end)
+                {
+                    var temp = redShirtSpeeds[start];
+                    redShirtSpeeds[start] = redShirtSpeeds[end];
+                    redShirtSpeeds[end] = temp;
+                    start += 1;
+                    end -= 1;
+                }
+            }
+        }
+        #endregion
+
+        #region OptimalFreelancing
+        /// <summary>
+        /// 
+        /// </summary>
+        public class OptimalFreelancingClass
+        {
+            public int OptimalFreelancing(Dictionary<string, int>[] jobs)
+            {
+                const int LENGTH_OF_WEEK = 7;
+                int profit = 0;
+                Array.Sort(jobs, Comparer<Dictionary<string, int>>.Create((jobOne, JobTwo) => JobTwo["payment"]
+                .CompareTo(jobOne["payment"])
+                        )
+                );
+
+                bool[] timeline = new bool[LENGTH_OF_WEEK];
+
+                foreach (var job in jobs)
+                {
+                    int maxTime = Math.Min(job["deadline"], LENGTH_OF_WEEK);
+                    for (int time = maxTime - 1; time >= 0; time--)
+                    {
+                        if (!timeline[time])
+                        {
+                            timeline[time] = true;
+                            profit += job["payment"];
+                            break;
                         }
                     }
                 }
 
-                return Array.Empty<int>();
+                return profit;
+            }
+        }
+        #endregion
+
+        #region RemoveDuplicatesFromLinkedList
+        /// <summary>
+        /// 
+        /// </summary>
+        public class RemoveDuplicatesFromLinkedListClass
+        {
+            public LinkedList RemoveDuplicatesFromLinkedList(LinkedList linkedList)
+            {
+                LinkedList currentNode = linkedList;
+                while (currentNode != null)
+                {
+                    LinkedList nextDistince = currentNode.next;
+                    while (nextDistince != null && nextDistince.value == currentNode.value)
+                    {
+                        nextDistince = nextDistince.next;
+                    }
+
+                    currentNode.next = nextDistince;
+                    currentNode = nextDistince;
+                }
+
+                return linkedList;
+            }
+
+            public class LinkedList
+            {
+                public int value;
+                public LinkedList next = null;
+                public LinkedList(int value)
+                {
+                    this.value = value;
+                }
+            }
+        }
+        #endregion
+
+        #region MiddleNode
+        /// <summary>
+        /// 
+        /// </summary>
+        public class MiddleNodeClass
+        {
+            public class LinkedList
+            {
+                public int value;
+                public LinkedList next;
+
+                public LinkedList(int value)
+                {
+                    this.value = value;
+                    this.next = null;
+                }
+            }
+
+            public LinkedList MiddleNode(LinkedList linkedList)
+            {
+                LinkedList slowNode = linkedList;
+                LinkedList fastnode = linkedList;
+                while (fastnode != null && fastnode.next != null)
+                {
+                    slowNode = fastnode.next;
+                    fastnode = fastnode.next;
+                }
+
+                return slowNode;
+            }
+        }
+        #endregion
+
+        #region NthFibonacci
+        /// <summary>
+        /// 
+        /// </summary>
+        public static class NthFibonacciClass
+        {
+            public static int GetNthFib(int n)
+            {
+                if (n == 2)
+                {
+                    return 1;
+                }
+                else if (n == 1)
+                {
+                    return 0;
+                }
+                else
+                    return GetNthFib(n - 1) + GetNthFib(n - 2);
+            }
+        }
+        #endregion
+
+        #region ProductSum
+        /// <summary>
+        /// 
+        /// </summary>
+        public static class ProductSumClass
+        {
+            public static int ProductSum(List<object> array)
+            {
+                return ProductSumHelper(array, 1);
+            }
+
+            public static int ProductSumHelper(List<object> array, int multiplier)
+            {
+                // Write your code here.
+                int sum = 0;
+                foreach (object item in array)
+                {
+                    if (item is IList<Object>)
+                    {
+                        sum += ProductSumHelper((List<object>)item, multiplier + 1);
+                    }
+                    else
+                    {
+                        sum += (int)item;
+                    }
+                }
+                return sum * multiplier;
+            }
+        }
+        #endregion
+
+        #region BinarySeach
+        /// <summary>
+        /// 
+        /// </summary>
+        public class BinarySeachIterativelyClass
+        {
+            public int BinarySearchIteritevely(int[] inputArray, int numberOfElements, int key)
+            {
+                Array.Sort(inputArray);
+                int leftIndex = 0;
+                int rightIndex = numberOfElements - 1;
+                while (leftIndex <= rightIndex)
+                {
+                    int middleElement = (leftIndex + rightIndex) / 2;
+                    if (key == inputArray[middleElement])
+                        return middleElement;
+                    else if (key < inputArray[middleElement])
+                        rightIndex = middleElement - 1;
+                    else if (key > inputArray[middleElement])
+                        leftIndex = middleElement + 1;
+                }
+                return -1;
+            }
+
+            public int BinarysearchRecursion(int[] A, int key, int l, int r)
+            {
+                if (l > r)
+                    return -1;
+                else
+                {
+                    int mid = (l + r) / 2;
+                    if (key == A[mid])
+                        return mid;
+                    else if (key < A[mid])
+                        return BinarysearchRecursion(A, key, l, mid - 1);
+                    else if (key > A[mid])
+                        return BinarysearchRecursion(A, key, mid + 1, r);
+                }
+                return -1;
+            }
+        }
+        #endregion
+
+        #region FindThreeLargestNumbers
+        /// <summary>
+        /// 
+        /// </summary>
+        public static class FindThreeLargestNumbersClass
+        {
+            public static int[] FindThreeLargestNumbers(int[] array)
+            {
+                int[] threeLargest = { Int32.MinValue, Int32.MinValue, Int32.MinValue };
+                foreach (int num in array)
+                {
+                    updateLargest(threeLargest, num);
+                }
+                return threeLargest;
+            }
+            public static void updateLargest(int[] threeLargest, int num)
+            {
+                if (num > threeLargest[2])
+                {
+                    shiftAndUpdate(threeLargest, num, 2);
+                }
+                else if (num > threeLargest[1])
+                {
+                    shiftAndUpdate(threeLargest, num, 1);
+                }
+                else if (num > threeLargest[0])
+                {
+                    shiftAndUpdate(threeLargest, num, 0);
+                }
+            }
+            public static void shiftAndUpdate(int[] array, int num, int idx)
+            {
+                for (int i = 0; i <= idx; i++)
+                {
+                    if (i == idx)
+                    {
+                        array[i] = num;
+                    }
+                    else
+                    {
+                        array[i] = array[i + 1];
+                    }
+                }
+            }
+        }
+        #endregion
+
+        #region BubbleSort
+        /// <summary>
+        /// 
+        /// </summary>
+        public static class BubbleSortClass
+        {
+            public static int[] BubbleSort(int[] array)
+            {
+                if (array.Length == 0)
+                {
+                    return new int[] { };
+                }
+                bool isSorted = false;
+                int counter = 0;
+                while (!isSorted)
+                {
+                    isSorted = true;
+                    for (int i = 0; i < array.Length - 1 - counter; i++)
+                    {
+                        if (array[i] > array[i + 1])
+                        {
+                            swap(i, i + 1, array);
+                            isSorted = false;
+                        }
+                    }
+                    counter++;
+                }
+                return array;
+            }
+            public static void swap(int i, int j, int[] array)
+            {
+                int temp = array[j];
+                array[j] = array[i];
+                array[i] = temp;
+            }
+        }
+        #endregion
+
+        #region InsertionSort
+        /// <summary>
+        /// 
+        /// </summary>
+        public class InsertionSortClass
+        {
+            // Best: O(n) time | O(1) space
+            // Average: O(n^2) time | O(1) space
+            // Worst: O(n^2) time | O(1) space
+            public static int[] InsertionSort(int[] array)
+            {
+                if (array.Length == 0)
+                {
+                    return new int[] { };
+                }
+                for (int i = 1; i < array.Length; i++)
+                {
+                    int j = i;
+                    while (j > 0 && array[j] < array[j - 1])
+                    {
+                        swap(j, j - 1, array);
+                        j -= 1;
+                    }
+                }
+                return array;
+            }
+            public static void swap(int i, int j, int[] array)
+            {
+                int temp = array[j];
+                array[j] = array[i];
+                array[i] = temp;
+            }
+        }
+        #endregion
+
+        #region SelectionSort
+        /// <summary>
+        /// 
+        /// </summary>
+        public class SelectionSortClass
+        {
+
+            public int[] SelectionSort(int[] array, int numberOfElements)
+            {
+                for (int i = 0; i < numberOfElements - 1; i++)
+                {
+                    int posistion = i;
+                    for (int j = i + 1; j < numberOfElements; j++)
+                    {
+                        if (array[j] < array[posistion])
+                        {
+                            posistion = j;
+                        }
+                    }
+
+                    int temp = array[i];
+                    array[i] = array[posistion];
+                    array[posistion] = temp;
+
+                }
+
+                return array;
+            }
+        }
+        #endregion
+
+        #region IsPalindrome
+        /// <summary>
+        /// 
+        /// </summary>
+        public class PalindromeCheckClass
+        {
+            // O(n) time | O(1) space
+            public static bool IsPalindrome(string str)
+            {
+                int leftIdx = 0;
+                int rightIdx = str.Length - 1;
+                while (leftIdx < rightIdx)
+                {
+                    if (str[leftIdx] != str[rightIdx])
+                    {
+                        return false;
+                    }
+                    leftIdx++;
+                    rightIdx--;
+                }
+                return true;
+            }
+        }
+        #endregion
+
+        #region CaesarCypherEncryptor
+        /// <summary>
+        /// Given a non empty string of lowercase letters and non-negative
+        /// integer representing a key. write a function that returns a
+        /// new string obtained by shifting every letter in the input
+        /// string by k position in the alphabet,
+        /// where k is the key.
+        /// 
+        /// Note that letters should "wrap" around;
+        /// in other words, the letter  shifted by
+        /// one returns letter a
+        /// 
+        /// </summary>
+        public class CaesarCipherEncryptorClass
+        {
+            // O(n) time | O(n) space
+            public static string CaesarCypherEncryptor(string str, int key)
+            {
+                char[] newLetters = new char[str.Length];
+                int newKey = key % 26;
+                for (int i = 0; i < str.Length; i++)
+                {
+                    newLetters[i] = GetNewLetter(str[i], newKey);
+                }
+                return new string(newLetters);
+            }
+            public static char GetNewLetter(char letter, int key)
+            {
+                int newLetterCode = letter + key;
+                return newLetterCode <= 122 ? (char)newLetterCode : (char)(96 + newLetterCode % 122);
+            }
+        }
+        #endregion
+
+        #region RunLengthEncoding
+        /// <summary>
+        /// Write a function that takes in a non-empty
+        /// string and returns it's run-length encoding.
+        /// From Wikipedia, "run-length encoding is a form
+        /// of lossless data compression in which runs of
+        /// data are stored as a single data value and count
+        /// rather than as the original run". For this problem,
+        /// a run of data is any sequence consecutive, identical
+        /// characters. So the run "AAA" would be run-length-encoded
+        /// as "3A".
+        /// 
+        /// To make things more complicated, however, the input string
+        /// can contain all sorts of special characters, including numbers
+        /// And since encoded data must be decodable, this means that
+        /// we can't naively run-length-encode long runs. For example,
+        /// the run "AAAAAAAAAAAA" (12A)s, can naively be decoded as "12A"
+        /// sinc this string can be decoded as either "AAAAAAAAAAAA" or
+        /// "1AA". Thus, long runs(runs of 10 or more characters) should
+        /// be encoded in a split fashion; the aforementioned run should be
+        /// encoded as "9A3A".
+        /// </summary>
+        /// <param name="stringArray"></param>
+        /// <returns>String</returns>
+        public class RunLengthEncodingClass
+        {
+            public string RunLengthEncoding(string stringArray)
+            {
+                //O(n) time | O(n) space - where n is the length of the input string
+                StringBuilder stringBuilder = new StringBuilder();
+                int currentLength = 1;
+                for (int i = 1; i < stringArray.Length; i++)
+                {
+                    char currentChar = stringArray[i];
+                    char previousChar = stringArray[i - 1];
+
+                    if ((currentChar != previousChar) || (currentLength == 9))
+                    {
+                        stringBuilder.Append(currentLength.ToString());
+                        stringBuilder.Append(previousChar);
+                        currentLength = 0;
+                    }
+
+                    currentLength += 1;
+                }
+
+                stringBuilder.Append(currentLength.ToString());
+
+                stringBuilder.Append(stringArray[stringArray.Length - 1]);
+
+                return stringBuilder.ToString();
+            }
+        }
+        #endregion
+
+        #region CommonCharacters
+        /// <summary>
+        /// 
+        /// </summary>
+        public class CommonCharactersClass
+        {
+            public string[] CommonCharacters(string[] strings)
+            {
+                Dictionary<char, int> characterCounts = new Dictionary<char, int>();
+                foreach (var str in strings)
+                {
+                    HashSet<char> uniqueStringChars = new HashSet<char>();
+                    for (int i = 0; i < str.Length; i++)
+                    {
+                        uniqueStringChars.Add(str[i]);
+                    }
+
+                    foreach (var character in uniqueStringChars)
+                    {
+                        if (!characterCounts.ContainsKey(character))
+                        {
+                            characterCounts[character] = 0;
+                        }
+                        characterCounts[character] = characterCounts[character] + 1;
+                    }
+                }
+
+                List<char> finalChars = new List<char>();
+                foreach (var characterCount in characterCounts)
+                {
+                    char charater = characterCount.Key;
+                    int count = characterCount.Value;
+                    if (count == strings.Length)
+                    {
+                        finalChars.Add(charater);
+                    }
+                }
+
+                string[] finalCharArray = new string[finalChars.Count];
+                for (int i = 0; i < finalCharArray.Length; i++)
+                {
+                    finalCharArray[i] = finalChars[i].ToString();
+                }
+                return finalCharArray;
+            }
+        }
+        #endregion
+
+        #region GenerateDocument
+        /// <summary>
+        /// 
+        /// </summary>
+        public class GenerateDocumentClass
+        {
+            public bool GenerateDocument(string characters, string document)
+            {
+                HashSet<char> alreadyCounted = new HashSet<char>();
+
+                for (int index = 0; index < document.Length; index++)
+                {
+                    char character = document[index];
+                    if (alreadyCounted.Contains(character))
+                    {
+                        continue;
+                    }
+
+                    int documentFrequency = CountcharFrequency(character, document);
+                    int characterFrequency = CountcharFrequency(character, characters);
+                    if (documentFrequency > characterFrequency)
+                    {
+                        return false;
+                    }
+
+                    alreadyCounted.Add(character);
+                }
+
+                return true;
+            }
+
+            private int CountcharFrequency(char character, string target)
+            {
+                int frequency = 0;
+                for (int index = 0; index < target.Length; index++)
+                {
+                    char c = target[index];
+                    if (c == character)
+                    {
+                        frequency += 1;
+                    }
+                }
+
+                return frequency;
+            }
+        }
+        #endregion
+
+        #region FirstNonRepeatingCharacter
+        /// <summary>
+        /// 
+        /// </summary>
+        public class FirstNonRepeatingCharacterClass
+        {
+            public int FirstNonRepeatingCharacter(string str)
+            {
+                Dictionary<Char, int> charaterFrequency = new Dictionary<Char, int>();
+
+                for (int i = 0; i < str.Length; i++)
+                {
+                    char character = str[i];
+                    charaterFrequency[character] =
+                        charaterFrequency.GetValueOrDefault(character, 0) + 1;
+                }
+
+                for (int i = 0; i < str.Length; i++)
+                {
+                    char character = str[i];
+                    if (charaterFrequency[character] == 1)
+                    {
+                        return i;
+                    }
+                }
+
+                return -1;
+            }
+        }
+        #endregion  
+
+        #region Semordnilap
+        /// <summary>
+        /// 
+        /// </summary>
+        public class SemordnilapClass
+        {
+            public List<List<string>> Semordnilap(string[] words)
+            {
+                HashSet<string> wordsSet = new HashSet<string>();
+                List<List<string>> semordnilapPairs = new List<List<string>>();
+
+                foreach (var word in words)
+                {
+                    char[] chars = word.ToCharArray();
+                    Array.Reverse(chars);
+                    string reverse = new string(chars);
+                    if (wordsSet.Contains(reverse) && !reverse.Equals(word))
+                    {
+                        List<string> semordnilapPair = new List<string> { word, reverse };
+                        semordnilapPairs.Add(semordnilapPair);
+                        wordsSet.Remove(word);
+                        wordsSet.Remove(reverse);
+                    }
+                }
+
+                return semordnilapPairs;
+            }
+        }
+        #endregion
+
+        #region ReverseWordsInString
+        /// <summary>
+        /// 
+        /// </summary>
+        public class ReverseWordsInStringClass
+        {
+            public string ReverseWordsInString(string str)
+            {
+                List<string> words = new List<string>();
+                int startOfWord = 0;
+
+                for (int i = 0; i < str.Length; i++)
+                {
+                    char charecter = str[i];
+
+                    if (charecter == ' ')
+                    {
+                        words.Add(str.Substring(startOfWord, i - startOfWord));
+                        startOfWord = i;
+                    }
+                    else if (str[startOfWord] == ' ')
+                    {
+                        words.Add(" ");
+                        startOfWord = i;
+                    }
+                }
+
+                words.Add(str.Substring(startOfWord));
+                words.Reverse();
+                return String.Join(" ", words);
+            }
+        } 
+        #endregion
+
+        /*********************************************OTHER ALGORITHMS******************************************************************/
+
+        #region FindClosestValueInBst
+        /// <summary>
+        /// Write a function that takes in a Binary Tree(BTS) and a target integer value and returns
+        /// the closest value to that target value contained in the BTS.
+        ///
+        /// You can assume that there will only be one closet value.
+        ///
+        /// Each BTS node has an integer valie, a left child node, and right child node.A node is
+        /// said to be a valid BTS node id and only id it satisfies the BTS property: its value is
+        /// strictly greater than the values of every node to its value; its value is less than or
+        /// equal to the values of every node to its right
+        /// tha
+        /// </summary>
+        public static class FindClosestValueInBstClass
+        {
+            // Average: O(log(n)) time | O(log(n)) space
+            // Worst: O(n) time | O(n) space
+            public static int FindClosestValueInBst(Bst tree, int target)
+            {
+                return FindClosestValueInBst(tree, target, Int32.MaxValue);
+            }
+
+            private static int FindClosestValueInBst(Bst tree, int target, double closest)
+            {
+                if (Math.Abs(target - closest) > Math.Abs(target - tree.value))
+                {
+                    closest = tree.value;
+                }
+                if (target < tree.value && tree.left != null)
+                {
+                    return FindClosestValueInBst(tree.left, target, closest);
+                }
+                else if (target > tree.value && tree.right != null)
+                {
+                    return FindClosestValueInBst(tree.right, target, closest);
+                }
+                else
+                {
+                    return (int)closest;
+                }
+            }
+            public class Bst
+            {
+                public int value;
+                public Bst left = null!;
+                public Bst right = null!;
+                public Bst(int value)
+                {
+                    this.value = value;
+                }
             }
         }
         #endregion
@@ -1469,47 +1759,7 @@ namespace Easy_Algorithms
                 return symmetric;
             }
         }
-        #endregion
-
-        #region BinarySeach
-        public class BinarySeachIterativelyClass
-        {
-            public int BinarySearchIteritevely(int[] inputArray, int numberOfElements, int key)
-            {
-                Array.Sort(inputArray);
-                int leftIndex = 0;
-                int rightIndex = numberOfElements - 1;
-                while (leftIndex <= rightIndex)
-                {
-                    int middleElement = (leftIndex + rightIndex) / 2;
-                    if (key == inputArray[middleElement])
-                        return middleElement;
-                    else if (key < inputArray[middleElement])
-                        rightIndex = middleElement - 1;
-                    else if (key > inputArray[middleElement])
-                        leftIndex = middleElement + 1;
-                }
-                return -1;
-            }
-
-            public int BinarysearchRecursion(int[] A, int key, int l, int r)
-            {
-                if (l > r)
-                    return -1;
-                else
-                {
-                    int mid = (l + r) / 2;
-                    if (key == A[mid])
-                        return mid;
-                    else if (key < A[mid])
-                        return BinarysearchRecursion(A, key, l, mid - 1);
-                    else if (key > A[mid])
-                        return BinarysearchRecursion(A, key, mid + 1, r);
-                }
-                return -1;
-            }
-        }
-        #endregion
+        #endregion        
 
         #region SumArray
         /// <summary>
@@ -1608,38 +1858,7 @@ namespace Easy_Algorithms
                 }
             }
         }
-        #endregion
-
-        #region SelectionSort
-        /// <summary>
-        /// 
-        /// </summary>
-        public class SelectionSortClass
-        {
-
-            public int[] SelectionSort(int[] array, int numberOfElements)
-            {
-                for (int i = 0; i < numberOfElements - 1; i++)
-                {
-                    int posistion = i;
-                    for (int j = i + 1; j < numberOfElements; j++)
-                    {
-                        if (array[j] < array[posistion])
-                        {
-                            posistion = j;
-                        }
-                    }
-
-                    int temp = array[i];
-                    array[i] = array[posistion];
-                    array[posistion] = temp;
-
-                }
-
-                return array;
-            }
-        }
-        #endregion
+        #endregion   
 
         #region Linearsearch
         /// <summary>
