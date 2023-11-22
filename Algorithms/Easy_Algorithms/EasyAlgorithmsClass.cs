@@ -389,7 +389,7 @@ namespace Easy_Algorithms
         ///       / \   / \
         ///     -4   2 8   3
         ///     / \
-        ///     2  3
+        ///    2  3
         ///
         /// Sample output
         /// 6 // (((2*3) -2) + (8/3))
@@ -437,7 +437,23 @@ namespace Easy_Algorithms
 
         #region DepthFirstSearch
         /// <summary>
+        /// You're given a Node class that has a name and an array of optional children
+        /// nodes. When put together, nodes form an acyclic tree-like structure.
+        ///
+        /// Implement the depthFirstSearch method on the Node class, which takes in an
+        /// empty array. traverse the tree using Depth-First Search approach( specifically navigating
+        /// the tree from left to right), stores all of the nodes, names in the input array, and returns it.
+        ///
+        /// graph =  A
+        ///       /  |  \ 
+        ///      B   C   D
+        ///    /  \     / \
+        ///   E   F    G   H
+        ///      / \   \
+        ///     I   J  K
         /// 
+        /// Sample output
+        /// ["A", "B", "E", "F", "I", "J", "C", "D", "G", "K", "H"]
         /// </summary>
         public class DepthFirstSearchClass
         {
@@ -454,9 +470,9 @@ namespace Easy_Algorithms
                 public List<string> DepthFirstSearch(List<string> array)
                 {
                     array.Add(name);
-                    for (int i = 0; i < children.Count; i++)
+                    foreach (var node in children)
                     {
-                        children[i].DepthFirstSearch(array);
+                        node.DepthFirstSearch(array);
                     }
                     return array;
                 }
@@ -473,29 +489,60 @@ namespace Easy_Algorithms
 
         #region MinimumWaitingTime
         /// <summary>
-        /// 
+        /// You're given a non-empty array of positive integers representing the amounts of the time
+        /// that specific queries take to execute. Only one query can be executed at a time, but the
+        /// queries can be executed in any order.
+        ///
+        /// A queries waiting time is defined as the amount of time that it must wait before its
+        /// execution starts. In other words, if a query is executed second, them its waiting time
+        /// is the duration of the first query; if the a query is executed third, then its waiting
+        /// time is the sum of the durations of the first two queries.
+        ///
+        /// Write a function that returns the minimum amount of the total waiting time for all of the
+        /// queries. For example, If you're given the queries of durations[1,4,5], then the total waiting
+        /// time if the queries were executed in the order of [5,1,4] would be (0)+(5)(5+1)=11. The first
+        /// query of duration 5 would be executed immediately, so its waiting time would be 0, the second
+        /// (the duration of the first query) to be executed, and the last query would have to wait the
+        /// duration of the first two queries before being executed.
+        ///
+        /// queries = [3,2,1,2,6]
+        /// Sample Input = 17
         /// </summary>
         public class MinimumWaitingTimeClass
         {
             public int MinimumWaitingTime(int[] queries)
             {
                 Array.Sort(queries);
-                int totailWaitingTime = 0;
+                var totalWaitingTime = 0;
                 for (int index = 0; index < queries.Length; index++)
                 {
-
-                    int duration = queries[index];
-                    int queriesLeft = queries.Length - (index + 1);
-                    totailWaitingTime += duration * queriesLeft;
+                    var duration = queries[index];
+                    var queriesLeft = queries.Length - (index + 1);
+                    totalWaitingTime += duration * queriesLeft;
                 }
-                return totailWaitingTime;
+                return totalWaitingTime;
             }
         }
         #endregion
 
         #region ClassPhotos
         /// <summary>
-        /// 
+        /// It's photo day at the local school, and you're the photographer assigned to take class
+        /// photos. The class that you'll be photographing has an even number of students, and all
+        /// these students are wearing red or blue shirt. Half red, half blue. You're responsible
+        /// for arranging the student in two rows before taking the photo. Each row should contain the
+        /// same number of students and should adhere to the following guidelines
+        /// -> All Students wearing red shirts must be in the same row.
+        /// -> All Students wearing blue shirts must be in the same row.
+        /// -> Each student in the back row must be strictly taller than student directly in front
+        /// of them in the first row.
+        ///
+        /// You're given two input arrays: one containing the heights of all the students with red
+        /// shirts and another one containing the heights of all the students with blue shirts. These
+        /// arrays will always have the same length, and each height will be a positive integer. Write
+        /// a function that returns whether or not a class photo follows the stated can be taken.
+        ///
+        ///  Note: You can assume that each class has at least 2 students.
         /// </summary>
         public class ClassPhotosClass
         {
@@ -713,7 +760,6 @@ namespace Easy_Algorithms
 
             public static int ProductSumHelper(List<object> array, int multiplier)
             {
-                // Write your code here.
                 int sum = 0;
                 foreach (object item in array)
                 {
