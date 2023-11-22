@@ -384,12 +384,12 @@ namespace Easy_Algorithms.Tests
         {
             public TestBinaryTree(int value) : base(value) { }
 
-            public TestBinaryTree Insert(List<int> values)
+            public TestBinaryTree? Insert(List<int> values)
             {
                 return Insert(values, 0);
             }
 
-            public TestBinaryTree Insert(List<int> values, int i)
+            public TestBinaryTree? Insert(List<int> values, int i)
             {
                 if (i >= values.Count) return null;
 
@@ -399,18 +399,18 @@ namespace Easy_Algorithms.Tests
                 {
                     TestBinaryTree current = queue[0];
                     queue.RemoveAt(0);
-                    if (current.left == null)
+                    if (current.Left == null)
                     {
-                        current.left = new TestBinaryTree(values[i]);
+                        current.Left = new TestBinaryTree(values[i]);
                         break;
                     }
-                    queue.Add((TestBinaryTree)current.left);
-                    if (current.right == null)
+                    queue.Add((TestBinaryTree)current.Left);
+                    if (current.Right == null)
                     {
-                        current.right = new TestBinaryTree(values[i]);
+                        current.Right = new TestBinaryTree(values[i]);
                         break;
                     }
-                    queue.Add((TestBinaryTree)current.right);
+                    queue.Add((TestBinaryTree)current.Right);
                 }
                 Insert(values, i + 1);
                 return this;
@@ -420,7 +420,7 @@ namespace Easy_Algorithms.Tests
         [Fact]
         public void BranchSumsTest1()
         {
-            TestBinaryTree tree = new TestBinaryTree(1).Insert(
+            TestBinaryTree? tree = new TestBinaryTree(1).Insert(
                 new List<int>() { 2, 3, 4, 5, 6, 7, 8, 9, 10 });
             List<int> expected = new List<int>() { 15, 16, 18, 10, 11 };
             Assert.True(BranchSumsClass.BranchSums(tree).SequenceEqual(expected));

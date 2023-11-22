@@ -252,36 +252,37 @@ namespace Easy_Algorithms
         {
             public class BinaryTree
             {
-                public int value;
-                public BinaryTree? left;
-                public BinaryTree? right;
-                public BinaryTree(int value)
+                public readonly int Value;
+                public BinaryTree? Left;
+                public BinaryTree? Right;
+
+                protected BinaryTree(int value)
                 {
-                    this.value = value;
-                    this.left = null;
-                    this.right = null;
+                    this.Value = value;
+                    this.Left = null;
+                    this.Right = null;
                 }
             }
-            public static List<int> BranchSums(BinaryTree root)
+            public static List<int> BranchSums(BinaryTree? root)
             {
                 List<int> sums = new List<int>();
-                calculateBranchSums(root, 0, sums);
+                CalculateBranchSums(root, 0, sums);
                 return sums;
             }
 
-            public static void calculateBranchSums(
-                BinaryTree node, int runningSum, List<int> sums)
+            public static void CalculateBranchSums(
+                BinaryTree? node, int runningSum, List<int> sums)
             {
                 if (node == null) return;
-                int newRunningSum = runningSum + node.value;
-                if (node.left == null && node.right == null)
+                int newRunningSum = runningSum + node.Value;
+                if (node.Left == null && node.Right == null)
                 {
                     sums.Add(newRunningSum);
                     return;
                 }
 
-                calculateBranchSums(node.left,newRunningSum, sums);
-                calculateBranchSums(node.right, newRunningSum, sums);
+                CalculateBranchSums(node.Left,newRunningSum, sums);
+                CalculateBranchSums(node.Right, newRunningSum, sums);
             }
 
             
@@ -302,7 +303,7 @@ namespace Easy_Algorithms
             // the Binary Tree and h is the height of the Binary Tree
             public class BinaryTree
             {
-                public int value;
+                private int value;
                 public BinaryTree left;
                 public BinaryTree right;
                 public BinaryTree(int value)
@@ -356,7 +357,7 @@ namespace Easy_Algorithms
             public static int nodeDepthsHelper(BinaryTree root, int depth)
             {
                 if (root == null) return 0;
-                return depth + nodeDepthsHelper(root.left, depth + 1) + nodeDepthsHelper(root.right,
+                return depth + nodeDepthsHelper(root.Left, depth + 1) + nodeDepthsHelper(root.Right,
                 depth + 1);
             }
         }
@@ -741,7 +742,16 @@ namespace Easy_Algorithms
 
         #region MiddleNode
         /// <summary>
-        /// 
+        /// You're given a Linked List with at least one node.Write a function that returns
+        /// the middle node if the Linked List. if there are two middle nodes(i.e an even lenth list)
+        /// your function should return  the second  of these nodes.
+        ///
+        /// Each Linked List node has an integer value as well as a next node pointing to the next
+        /// node in the list or to None/null it's the tail of the list.
+        ///
+        /// Linked List = 2->7->3->5
+        ///
+        /// 3->5
         /// </summary>
         public class MiddleNodeClass
         {
@@ -774,7 +784,17 @@ namespace Easy_Algorithms
 
         #region NthFibonacci
         /// <summary>
-        /// 
+        /// The Fibonacci sequence is defined as follows: the first number of the sequence is 0,
+        /// the second is 1, and the nth number is the sum of the (n-1)th and (n-2)th numbers.
+        /// Write a function that takes in an integer n and returns the nth fibonacci number.
+        ///
+        /// Important note: the Fibonacci sequence is often defined with its first two numbers
+        /// as F0 = 0 and F1=1. For the purpose if this question, the first fibinacci number is F0;
+        /// therefore. getNthFib(1) is equal to F0, getNFib(2) is equal ti F1, etc
+        ///
+        /// Sample Input
+        /// n=2
+        /// Sample Output = 1
         /// </summary>
         public static class NthFibonacciClass
         {
@@ -796,7 +816,24 @@ namespace Easy_Algorithms
 
         #region ProductSum
         /// <summary>
-        /// 
+        /// Write a function that takes in a "special" array and returns it product sum.
+        ///
+        /// A "special" array is an non-empty array that constains either integers or other
+        /// "spacial" arrays. The product sum of a "special" array is the sum of its elements,
+        /// where "special" arrays inside it are summed themselves and them multiplied by thier
+        /// level of depth.
+        ///
+        /// The depth of a "special" array is how far nested it is. For instance, the depth of [] is 1:
+        /// the depth of the inner array in [[]] is 2: the depth of the most innermost array in [[[]]]
+        /// is 3.
+        ///
+        /// Therefore, the product sum of [x,y] is x+y; product sum of [x,[y,z]] is x+ 2* (y+z): product
+        /// sum of [x,[y,[z]]] is x+2*(y+3z).
+        ///
+        /// Sample Input:
+        /// array = [5,2,[7,1],3,[6,[-13,8]4]]
+        /// Sample Output:
+        /// 12
         /// </summary>
         public static class ProductSumClass
         {
@@ -848,19 +885,19 @@ namespace Easy_Algorithms
                 return -1;
             }
 
-            public int BinarysearchRecursion(int[] A, int key, int l, int r)
+            public int BinarysearchRecursion(int[] array, int key, int l, int r)
             {
                 if (l > r)
                     return -1;
                 else
                 {
                     int mid = (l + r) / 2;
-                    if (key == A[mid])
+                    if (key == array[mid])
                         return mid;
-                    else if (key < A[mid])
-                        return BinarysearchRecursion(A, key, l, mid - 1);
-                    else if (key > A[mid])
-                        return BinarysearchRecursion(A, key, mid + 1, r);
+                    else if (key < array[mid])
+                        return BinarysearchRecursion(array, key, l, mid - 1);
+                    else if (key > array[mid])
+                        return BinarysearchRecursion(array, key, mid + 1, r);
                 }
                 return -1;
             }
@@ -2371,8 +2408,8 @@ namespace Easy_Algorithms
             private class Node
             {
                 public int element;
-                public Node next;
-                public Node(int e, Node n)
+                public Node? next;
+                public Node(int e, Node? n)
                 {
                     element = e;
                     next = n;
@@ -2401,7 +2438,7 @@ namespace Easy_Algorithms
 
             public void AddLast(int e)
             {
-                Node newest = new Node(e, null);
+                Node? newest = new Node(e, null);
                 if (isEmpty())
                     first = newest;
                 else
@@ -2433,8 +2470,8 @@ namespace Easy_Algorithms
                     Console.WriteLine("Invalid Position");
                     return;
                 }
-                Node newest = new Node(e, null);
-                Node p = first;
+                Node? newest = new Node(e, null);
+                Node? p = first;
                 int i = 1;
                 while (i < position - 1)
                 {
@@ -2471,7 +2508,7 @@ namespace Easy_Algorithms
                     Console.WriteLine("List is Empty");
                     return -1;
                 }
-                Node p = first;
+                Node? p = first;
                 int i = 1;
                 while (i < size - 1)
                 {
@@ -2493,7 +2530,7 @@ namespace Easy_Algorithms
                     Console.WriteLine("Invalid Position");
                     return -1;
                 }
-                Node p = first;
+                Node? p = first;
                 int i = 1;
                 while (i < position - 1)
                 {
@@ -2512,7 +2549,7 @@ namespace Easy_Algorithms
             /// <returns></returns>
             public int Search(int key)
             {
-                Node p = first;
+                Node? p = first;
                 int index = 0;
                 while (p != null)
                 {
