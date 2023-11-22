@@ -580,7 +580,26 @@ namespace Easy_Algorithms
 
         #region TandemBicycle
         /// <summary>
-        /// 
+        /// A tandem bicycle is a bicycle that's operated by two people: Person A and Person B. Both
+        /// people pedal bicycle, but the person that pedals faster dictates the speed of the bicycle.
+        /// So if person A pedals at speed of 5, and person B pedal at a sped of 4, the tandem bicycle
+        /// moved st a speed of 5(i.e tandemSped = Max(speedA,speedB).
+        ///
+        /// You're give tow list of positive integer: one that contains the speed of riders is wearing
+        /// red shirts, and another is wearing blue shirts. Each rider is represented by a single positive
+        /// integer, which is the speed that the pedal a tandem bicyle at. Both lists have the same length
+        /// meaning  that there are as many red shirt riders as there are blue shirt riders. Your goal os
+        /// to pair every rider wearing a red shirt with a rider wearing a blue shirt to operate a tandem
+        /// blue shirt.
+        ///
+        /// Write a function that returns the maximum possible total speed or the minimum possible total speed
+        /// of all the tandem bicycle being ridden based on the input parameter, fastest. if fastest = tru.
+        /// your function should return the maximum possible  total speed; otherwise it should return
+        /// the minimum total speed.
+        ///
+        /// Total speed is defined as the sum of the speeds of the tandem bicycle being ridden. For example
+        /// if there are 4 riders who have speeds 1 3 4 5 and if they're paired to tandem bicycle as follows
+        /// [1,4],[5,3] then the total speed of these tandem bicycle is 4 + 5 = 9
         /// </summary>
         public class TandemBicycleClass
         {
@@ -604,15 +623,16 @@ namespace Easy_Algorithms
                 return totalSpeed;
             }
 
-            private void ReverseArrayInPlace(int[] redShirtSpeeds)
+            private void ReverseArrayInPlace(int[] array)
             {
                 var start = 0;
-                var end = redShirtSpeeds.Length - 1;
+                var end = array.Length - 1;
                 while (start < end)
                 {
-                    var temp = redShirtSpeeds[start];
-                    redShirtSpeeds[start] = redShirtSpeeds[end];
-                    redShirtSpeeds[end] = temp;
+                    var temp = array[start];
+                    array[start] = array[end];
+                    array[end] = temp;
+                    
                     start += 1;
                     end -= 1;
                 }
@@ -622,7 +642,29 @@ namespace Easy_Algorithms
 
         #region OptimalFreelancing
         /// <summary>
+        /// You're recently started freelancing software development and have been offered a variety of job
+        /// oppotunities. Each job has a deadline ,meaning there is no value in completing the work after the
+        /// deadline.Additionally, each job has an associate payment representing the profit for completing 
+        /// that job. Givem this information, write a function that returns the maximum profit that can be obtained in 
+        /// a 7-day period.
         /// 
+        /// Each job will take one full day to complete, and the deadline will be given as the number of days left
+        /// to complete the job. For example, if a job has deadline of 1, then it can only be completed if it is
+        /// the first job worked on. if a job has a deadline of 2, then it could be started on the first or second
+        /// day.
+        /// 
+        /// 
+        /// Note: There is no requirement complete all of the jobs. Only one job can be worked on at a time, meaning 
+        /// that in some screnarios it will be impossible to complete them all.
+        /// 
+        /// Samle Input: 
+        /// Jobs =[
+        ///     {"deadline":1,"payment":1},
+        ///     {"deadline":2,"payment":1},
+        ///     {"deadline":2,"payment":2}
+        /// ]
+        /// 
+        /// Output= 3 
         /// </summary>
         public class OptimalFreelancingClass
         {
@@ -631,9 +673,7 @@ namespace Easy_Algorithms
                 const int LENGTH_OF_WEEK = 7;
                 int profit = 0;
                 Array.Sort(jobs, Comparer<Dictionary<string, int>>.Create((jobOne, JobTwo) => JobTwo["payment"]
-                .CompareTo(jobOne["payment"])
-                        )
-                );
+                .CompareTo(jobOne["payment"])));
 
                 bool[] timeline = new bool[LENGTH_OF_WEEK];
 
@@ -658,7 +698,14 @@ namespace Easy_Algorithms
 
         #region RemoveDuplicatesFromLinkedList
         /// <summary>
-        /// 
+        /// You're given the head of a Singly Linked list whose nodes are in sorted order with respect 
+        /// to their values. Write a function that returns a modified version of the linked List that doesn't
+        /// contain any nodes with duplicated values. The Linked List should be modified in place (i:e, you
+        /// shouldn't create a brand new list), and the modified Linked List should still its modified Linked
+        /// List should still have its nodes sorted with respect to their values.
+        ///
+        /// Each Linked List node has integer has an integer value as well as a next node pointing to the next
+        /// node in the list or to Node/null if it's the tail of the list.
         /// </summary>
         public class RemoveDuplicatesFromLinkedListClass
         {
@@ -716,8 +763,8 @@ namespace Easy_Algorithms
                 LinkedList fastnode = linkedList;
                 while (fastnode != null && fastnode.next != null)
                 {
-                    slowNode = fastnode.next;
-                    fastnode = fastnode.next;
+                    slowNode = slowNode.next;
+                    fastnode = fastnode.next.next;
                 }
 
                 return slowNode;
@@ -1218,12 +1265,11 @@ namespace Easy_Algorithms
         /// </summary>
         public class SemordnilapClass
         {
-            public List<List<string>> Semordnilap(string[] words)
-            {
-                HashSet<string> wordsSet = new HashSet<string>();
+            public List<List<string> > Semordnilap(string[] input) {
+                HashSet<string> wordsSet = new HashSet<string>(input);
                 List<List<string>> semordnilapPairs = new List<List<string>>();
 
-                foreach (var word in words)
+                foreach (string word in input) 
                 {
                     char[] chars = word.ToCharArray();
                     Array.Reverse(chars);
@@ -1236,9 +1282,9 @@ namespace Easy_Algorithms
                         wordsSet.Remove(reverse);
                     }
                 }
-
                 return semordnilapPairs;
             }
+            
         }
         #endregion
 
