@@ -672,10 +672,17 @@ namespace Medium_Algorithms.Tests
         {
             int[] input = { 1, 5 };
             Assert.True(NumberOfWaysToMakeChangeClass.NumberOfWaysToMakeChange(6, input) == 2);
-        } 
+        }
         #endregion
 
-
+        #region MinNumberOfCoinsForChange
+        [Fact]
+        public void MinNumberOfCoinsForChangeTestCase1()
+        {
+            int[] input = { 1, 5, 10 };
+            Assert.True(MinNumberOfCoinsForChangeClass.MinNumberOfCoinsForChange(7, input) == 3);
+        } 
+        #endregion
 
 
 
