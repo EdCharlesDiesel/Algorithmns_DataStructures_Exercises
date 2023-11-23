@@ -509,10 +509,27 @@ namespace Medium_Algorithms.Tests
                 }
                 insert(values, i + 1);
             }
-        } 
+        }
         #endregion
 
-
+        #region BinaryTreeDiameterClassTestCase1
+        [Fact]
+        public void BinaryTreeDiameterClassTestCase1()
+        {
+            var root = new BinaryTreeDiameterClass.BinaryTree(1);
+            root.left = new BinaryTreeDiameterClass.BinaryTree(3);
+            root.left.left = new BinaryTreeDiameterClass.BinaryTree(7);
+            root.left.left.left = new BinaryTreeDiameterClass.BinaryTree(8);
+            root.left.left.left.left = new BinaryTreeDiameterClass.BinaryTree(9);
+            root.left.right = new BinaryTreeDiameterClass.BinaryTree(4);
+            root.left.right.right = new BinaryTreeDiameterClass.BinaryTree(5);
+            root.left.right.right.right = new BinaryTreeDiameterClass.BinaryTree(6);
+            root.right = new BinaryTreeDiameterClass.BinaryTree(2);
+            var expected = 6;
+            var actual = new BinaryTreeDiameterClass().BinaryTreeDiameter(root);
+            Assert.True(expected == actual);
+        } 
+        #endregion
 
 
 

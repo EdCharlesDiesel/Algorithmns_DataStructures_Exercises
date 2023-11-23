@@ -995,9 +995,65 @@
                     this.value = value;
                 }
             }
-        } 
+        }
         #endregion
 
+        #region BinaryTreeDiameter
+        /// <summary>
+        /// 
+        /// </summary>
+        public class BinaryTreeDiameterClass
+        {
+            public int BinaryTreeDiameter(BinaryTree tree)
+            {
+
+                return GetTreeInfo(tree).diameter;
+            }
+
+            private TreeInfo GetTreeInfo(BinaryTree tree)
+            {
+                if (tree == null)
+                {
+                    return new TreeInfo(0, 0);
+                }
+
+                var leftTreeInfo= GetTreeInfo(tree.left);
+                var rightTreeInfo = GetTreeInfo(tree.right);
+
+                int longestPathThroughRoot= leftTreeInfo.height
+                    + rightTreeInfo.height;
+                int maxDiameterSoFar= Math.Max(leftTreeInfo.diameter,rightTreeInfo.diameter);
+
+                int currentDiameter= Math.Max(longestPathThroughRoot,maxDiameterSoFar);
+                int currentHeight= 1+ Math.Max(leftTreeInfo.height,rightTreeInfo.height);
+
+                return new TreeInfo(currentDiameter,currentHeight);
+            }
+
+            public class TreeInfo
+            {
+                public int diameter;
+                public int height;
+                public TreeInfo(int diameter, int height)
+                {
+                    this.diameter = diameter;
+                    this.height = height;
+                }
+            }
+
+            public class BinaryTree
+            {
+                public int value;
+                public BinaryTree left;
+                public BinaryTree right;
+
+                public BinaryTree(int value)
+                {
+                    this.value = value;
+                }
+            }
+        }
+        #endregion
 
 
 
