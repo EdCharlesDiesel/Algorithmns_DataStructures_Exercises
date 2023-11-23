@@ -528,8 +528,166 @@ namespace Medium_Algorithms.Tests
             var expected = 6;
             var actual = new BinaryTreeDiameterClass().BinaryTreeDiameter(root);
             Assert.True(expected == actual);
+        }
+        #endregion
+
+        #region FindSuccessor
+        [Fact]
+        public void FindSuccessorClassTestCase1()
+        {
+            FindSuccessorClass.BinaryTree root = new FindSuccessorClass.BinaryTree(1);
+            root.left = new FindSuccessorClass.BinaryTree(2);
+            root.left.parent = root;
+            root.right = new FindSuccessorClass.BinaryTree(3);
+            root.right.parent = root;
+            root.left.left = new FindSuccessorClass.BinaryTree(4);
+            root.left.left.parent = root.left;
+            root.left.right = new FindSuccessorClass.BinaryTree(5);
+            root.left.right.parent = root.left;
+            root.left.left.left = new FindSuccessorClass.BinaryTree(6);
+            root.left.left.left.parent = root.left.left;
+            FindSuccessorClass.BinaryTree node = root.left.right;
+            FindSuccessorClass.BinaryTree expected = root;
+            FindSuccessorClass.BinaryTree actual = new FindSuccessorClass().FindSuccessor(root, node);
+            Assert.Equal(expected, actual);
+        }
+        #endregion
+
+        #region HeightBalancedBinaryTree
+        [Fact]
+        public void HeightBalancedBinaryTreeClassTestCase()
+        {
+            HeightBalancedBinaryTreeClass.BinaryTree root = new HeightBalancedBinaryTreeClass.BinaryTree(1);
+            root = new HeightBalancedBinaryTreeClass.BinaryTree(1);
+            root.left = new HeightBalancedBinaryTreeClass.BinaryTree(2);
+            root.right = new HeightBalancedBinaryTreeClass.BinaryTree(3);
+            root.left.left = new HeightBalancedBinaryTreeClass.BinaryTree(4);
+            root.left.right = new HeightBalancedBinaryTreeClass.BinaryTree(5);
+            root.right.right = new HeightBalancedBinaryTreeClass.BinaryTree(6);
+            root.left.right.left = new HeightBalancedBinaryTreeClass.BinaryTree(7);
+            root.left.right.right = new HeightBalancedBinaryTreeClass.BinaryTree(8);
+            bool expected = true;
+            var actual = new HeightBalancedBinaryTreeClass().HeightBalancedBinaryTree(root);
+            Assert.True(expected == actual);
+        }
+        #endregion
+
+        #region MergeBinaryTrees
+        [Fact]
+        public void MergeBinaryTreesTestCase1()
+        {
+            MergeBinaryTreesClass.BinaryTree tree1 = new MergeBinaryTreesClass.BinaryTree(1);
+            tree1.left = new MergeBinaryTreesClass.BinaryTree(3);
+            tree1.left.left = new MergeBinaryTreesClass.BinaryTree(7);
+            tree1.left.right = new MergeBinaryTreesClass.BinaryTree(4);
+            tree1.right = new MergeBinaryTreesClass.BinaryTree(2);
+
+            MergeBinaryTreesClass.BinaryTree tree2 = new MergeBinaryTreesClass.BinaryTree(1);
+            tree2.left = new MergeBinaryTreesClass.BinaryTree(5);
+            tree2.left.left = new MergeBinaryTreesClass.BinaryTree(2);
+            tree2.right = new MergeBinaryTreesClass.BinaryTree(9);
+            tree2.right.left = new MergeBinaryTreesClass.BinaryTree(7);
+            tree2.right.right = new MergeBinaryTreesClass.BinaryTree(6);
+
+            MergeBinaryTreesClass.BinaryTree expected = new MergeBinaryTreesClass.BinaryTree(2);
+            expected.left = new MergeBinaryTreesClass.BinaryTree(8);
+            expected.left.left = new MergeBinaryTreesClass.BinaryTree(9);
+            expected.left.right = new MergeBinaryTreesClass.BinaryTree(4);
+            expected.right = new MergeBinaryTreesClass.BinaryTree(11);
+            expected.right.left = new MergeBinaryTreesClass.BinaryTree(7);
+            expected.right.right = new MergeBinaryTreesClass.BinaryTree(6);
+
+            MergeBinaryTreesClass.BinaryTree actual = new MergeBinaryTreesClass().MergeBinaryTrees(tree1, tree2);
+
+            Assert.True(areTreesEqual(expected, actual));
+        }
+
+        public bool areTreesEqual(
+          MergeBinaryTreesClass.BinaryTree tree1, MergeBinaryTreesClass.BinaryTree tree2
+        )
+        {
+            if (tree1 == null && tree2 == null) return true;
+
+            if (tree1 == null && tree2 != null)
+            {
+                return false;
+            }
+            else if (tree1 != null && tree2 == null)
+            {
+                return false;
+            }
+
+            if (tree1.value != tree2.value) return false;
+            return areTreesEqual(tree1.left, tree2.left) &&
+                   areTreesEqual(tree1.right, tree2.right);
+        }
+        #endregion
+
+        #region SymmetricalTree
+        [Fact]
+        public void SymmetricalTreeTestCase1()
+        {
+            SymmetricalTreeClass.BinaryTree tree = new SymmetricalTreeClass.BinaryTree(10);
+            tree.left = new SymmetricalTreeClass.BinaryTree(5);
+            tree.right = new SymmetricalTreeClass.BinaryTree(5);
+            tree.left.left = new SymmetricalTreeClass.BinaryTree(7);
+            tree.left.right = new SymmetricalTreeClass.BinaryTree(9);
+            tree.right.left = new SymmetricalTreeClass.BinaryTree(9);
+            tree.right.right = new SymmetricalTreeClass.BinaryTree(7);
+            var expected = true;
+            var actual = new SymmetricalTreeClass().SymmetricalTree(tree);
+            Assert.True(expected == actual);
+        }
+        #endregion
+
+        #region SplitBinaryTreeClass
+        [Fact]
+        public void SplitBinaryTreeClassTestCase1()
+        {
+            SplitBinaryTreeClass.BinaryTree tree = new SplitBinaryTreeClass.BinaryTree(2);
+            tree.left = new SplitBinaryTreeClass.BinaryTree(4);
+            tree.left.left = new SplitBinaryTreeClass.BinaryTree(4);
+            tree.left.right = new SplitBinaryTreeClass.BinaryTree(6);
+            tree.right = new SplitBinaryTreeClass.BinaryTree(10);
+            tree.right.left = new SplitBinaryTreeClass.BinaryTree(3);
+            tree.right.right = new SplitBinaryTreeClass.BinaryTree(3);
+            int expected = 16;
+            int actual = new SplitBinaryTreeClass().SplitBinaryTree(tree);
+            Assert.True(expected == actual);
+        }
+        #endregion
+
+        #region MaxSubsetSumNoAdjacent
+        [Fact]
+        public void MaxSubsetSumNoAdjacentTestCase1()
+        {
+            int[] input = { 75, 105, 120, 75, 90, 135 };
+            Assert.True(MaxSubsetSumNoAdjacentClass.MaxSubsetSumNoAdjacent(input) == 330);
+        }
+        #endregion
+
+        #region NumberOfWaysToMakeChange
+        [Fact]
+        public void NumberOfWaysToMakeChange()
+        {
+            int[] input = { 1, 5 };
+            Assert.True(NumberOfWaysToMakeChangeClass.NumberOfWaysToMakeChange(6, input) == 2);
         } 
         #endregion
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

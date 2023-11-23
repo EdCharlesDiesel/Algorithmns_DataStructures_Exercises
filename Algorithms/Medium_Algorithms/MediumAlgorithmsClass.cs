@@ -1017,17 +1017,17 @@
                     return new TreeInfo(0, 0);
                 }
 
-                var leftTreeInfo= GetTreeInfo(tree.left);
+                var leftTreeInfo = GetTreeInfo(tree.left);
                 var rightTreeInfo = GetTreeInfo(tree.right);
 
-                int longestPathThroughRoot= leftTreeInfo.height
+                int longestPathThroughRoot = leftTreeInfo.height
                     + rightTreeInfo.height;
-                int maxDiameterSoFar= Math.Max(leftTreeInfo.diameter,rightTreeInfo.diameter);
+                int maxDiameterSoFar = Math.Max(leftTreeInfo.diameter, rightTreeInfo.diameter);
 
-                int currentDiameter= Math.Max(longestPathThroughRoot,maxDiameterSoFar);
-                int currentHeight= 1+ Math.Max(leftTreeInfo.height,rightTreeInfo.height);
+                int currentDiameter = Math.Max(longestPathThroughRoot, maxDiameterSoFar);
+                int currentHeight = 1 + Math.Max(leftTreeInfo.height, rightTreeInfo.height);
 
-                return new TreeInfo(currentDiameter,currentHeight);
+                return new TreeInfo(currentDiameter, currentHeight);
             }
 
             public class TreeInfo
@@ -1054,6 +1054,320 @@
             }
         }
         #endregion
+
+        #region FindSuccessorClass
+        /// <summary>
+        /// 
+        /// </summary>
+        public class FindSuccessorClass
+        {
+            public class BinaryTree
+            {
+                public int value;
+                public BinaryTree left = null;
+                public BinaryTree right = null;
+                public BinaryTree parent = null;
+
+                public BinaryTree(int value)
+                {
+                    this.value = value;
+                }
+            }
+
+            public BinaryTree FindSuccessor(BinaryTree tree, BinaryTree node)
+            {
+                if (node.right != null)
+                {
+                    return GetLeftMostChild(node.right);
+                }
+                return GetRightMostChild(node);
+            }
+
+            public BinaryTree GetLeftMostChild(BinaryTree node)
+            {
+                BinaryTree currentNode = node;
+                while (currentNode.left != null)
+                {
+                    currentNode = currentNode.left;
+                }
+
+                return currentNode;
+            }
+
+            public BinaryTree GetRightMostChild(BinaryTree node)
+            {
+                BinaryTree currentNode = node;
+                while (currentNode.parent != null && currentNode.parent.right == currentNode)
+                {
+                    currentNode = currentNode.parent;
+                }
+
+                return currentNode.parent;
+            }
+        }
+        #endregion
+
+        #region HeightBalancedBinaryTree
+        /// <summary>
+        /// 
+        /// </summary>
+        public class HeightBalancedBinaryTreeClass
+        {
+            // This is an input class. Do not edit.
+            public class BinaryTree
+            {
+                public int value;
+                public BinaryTree left = null;
+                public BinaryTree right = null;
+
+                public BinaryTree(int value)
+                {
+                    this.value = value;
+                }
+            }
+
+            public class TreeInfo
+            {
+                public bool isBalanced;
+                public int height;
+
+                public TreeInfo(bool isBalanced, int height)
+                {
+                    this.height = height;
+                    this.isBalanced = isBalanced;
+                }
+            }
+
+            public bool HeightBalancedBinaryTree(BinaryTree tree)
+            {
+                TreeInfo treeInfo = GetTreeInfo(tree);
+                return treeInfo.isBalanced;
+            }
+
+            private TreeInfo GetTreeInfo(BinaryTree tree)
+            {
+                if (tree == null)
+                {
+                    return new TreeInfo(true, -1);
+                }
+
+                TreeInfo leftSubtreeInfo = GetTreeInfo(tree.left);
+                TreeInfo rightSubtreeInfo = GetTreeInfo(tree.right);
+
+                bool isBalanced =
+                    leftSubtreeInfo.isBalanced && rightSubtreeInfo.isBalanced &&
+                    Math.Abs(leftSubtreeInfo.height - rightSubtreeInfo.height) <= 1;
+
+                int height = Math.Max(leftSubtreeInfo.height, rightSubtreeInfo.height) + 1;
+
+                return new TreeInfo(isBalanced, height);
+
+            }
+        }
+        #endregion
+
+        #region MergeBinaryTrees
+        /// <summary>
+        /// 
+        /// </summary>
+        public class MergeBinaryTreesClass
+        {
+            // This is an input class. Do not edit.
+            public class BinaryTree
+            {
+                public int value;
+                public BinaryTree left = null;
+                public BinaryTree right = null;
+
+                public BinaryTree(int value)
+                {
+                    this.value = value;
+                }
+            }
+
+            public BinaryTree MergeBinaryTrees(BinaryTree tree1, BinaryTree tree2)
+            {
+                if (tree1 == null) return tree2;
+                if (tree2 == null) return tree1;
+
+                tree1.value += tree2.value;
+                tree1.left = MergeBinaryTrees(tree1.left, tree2.left);
+                tree1.right = MergeBinaryTrees(tree1.right, tree2.right);
+
+
+                return tree1;
+            }
+        }
+        #endregion
+
+        #region SymmetricalTree
+        /// <summary>
+        /// 
+        /// </summary>
+        public class SymmetricalTreeClass
+        {
+            // This is an input class. Do not edit.
+            public class BinaryTree
+            {
+                public int value;
+                public BinaryTree left = null;
+                public BinaryTree right = null;
+
+                public BinaryTree(int value)
+                {
+                    this.value = value;
+                }
+            }
+
+            public bool SymmetricalTree(BinaryTree tree)
+            {
+                return TreesAreMirrored(tree.left, tree.right);
+            }
+
+            private bool TreesAreMirrored(BinaryTree left, BinaryTree right)
+            {
+                if (left != null && right != null && left.value == right.value)
+                    return TreesAreMirrored(left.left, right.right) &&
+                        TreesAreMirrored(left.right, right.left);
+
+
+                return left == right;
+
+            }
+        }
+        #endregion
+
+        #region SplitBinaryTreeClass
+        /// <summary>
+        /// 
+        /// </summary>
+        public class SplitBinaryTreeClass
+        {
+            // This is an input class. Do not edit.
+            public class BinaryTree
+            {
+                public int value;
+                public BinaryTree left = null;
+                public BinaryTree right = null;
+
+                public BinaryTree(int value)
+                {
+                    this.value = value;
+                }
+            }
+
+            public class ResultPair
+            {
+                public int currentTreeSum;
+                public bool canBeSplit;
+
+                public ResultPair(int currentTreeSum, bool canBeSplit)
+                {
+                    this.currentTreeSum = currentTreeSum;
+                    this.canBeSplit = canBeSplit;
+                }
+            }
+
+            public int SplitBinaryTree(BinaryTree tree)
+            {
+                int treeSum = GetTreeSum(tree);
+                if (treeSum % 2 != 0)
+                {
+                    return 0;
+                }
+
+                int desiredSubtreeSum = treeSum / 2;
+                bool canBeSplit = TrySubtree(tree, desiredSubtreeSum).canBeSplit;
+
+                return canBeSplit == true ? desiredSubtreeSum : 0;
+            }
+
+            ResultPair TrySubtree(BinaryTree tree, int desiredSubtreeSum)
+            {
+                if (tree ==null)
+                {
+                    return new ResultPair(0, false);
+                }
+
+                var leftResultPair = TrySubtree(tree.left, desiredSubtreeSum);
+                var rightResultPair = TrySubtree(tree.right, desiredSubtreeSum);
+
+                int currentTreeSum = tree.value + leftResultPair.currentTreeSum +
+                    rightResultPair.currentTreeSum;
+                bool canBeSplit = leftResultPair.canBeSplit || rightResultPair.canBeSplit ||
+                    currentTreeSum == desiredSubtreeSum;
+
+                return new ResultPair(currentTreeSum, canBeSplit);
+            }
+
+            private int GetTreeSum(BinaryTree tree)
+            {
+                if (tree == null) return 0;
+                return tree.value + GetTreeSum(tree.left) + GetTreeSum(tree.right);
+            }
+        }
+        #endregion
+
+        #region MaxSubsetSumNoAdjacent
+        /// <summary>
+        /// 
+        /// </summary>
+        public class MaxSubsetSumNoAdjacentClass
+        {
+            // O(n) time | O(n) space
+            public static int MaxSubsetSumNoAdjacent(int[] array)
+            {
+                if (array.Length == 0)
+                {
+                    return 0;
+                }
+                else if (array.Length == 1)
+                {
+                    return array[0];
+                }
+                int[] maxSums = (int[])array.Clone();
+                maxSums[1] = Math.Max(array[0], array[1]);
+                for (int i = 2; i < array.Length; i++)
+                {
+                    maxSums[i] = Math.Max(maxSums[i - 1], maxSums[i - 2] + array[i]);
+                }
+                return maxSums[array.Length - 1];
+            }
+        }
+        #endregion
+
+        #region NumberOfWaysToMakeChange
+        /// <summary>
+        /// 
+        /// </summary>
+        public class NumberOfWaysToMakeChangeClass
+        {
+            public static int NumberOfWaysToMakeChange(int n, int[] denoms)
+            {
+                int[] ways = new int[n + 1];
+                ways[0] = 1;
+                foreach (int denom in denoms)
+                {
+                    for (int amount = 1; amount < n + 1; amount++)
+                    {
+                        if (denom <= amount)
+                        {
+                            ways[amount] += ways[amount - denom];
+                        }
+                    }
+                }
+                return ways[n];
+            }
+        } 
+        #endregion
+
+
+
+
+
+
+
+
 
 
 
