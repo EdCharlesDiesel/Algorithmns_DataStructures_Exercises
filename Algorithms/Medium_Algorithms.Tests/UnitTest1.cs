@@ -681,13 +681,70 @@ namespace Medium_Algorithms.Tests
         {
             int[] input = { 1, 5, 10 };
             Assert.True(MinNumberOfCoinsForChangeClass.MinNumberOfCoinsForChange(7, input) == 3);
-        } 
+        }
         #endregion
 
+        #region LevenshteinDistance
+        [Fact]
+        public void LevenshteinDistanceTestCase1()
+        {
+            Assert.True(LevenshteinDistanceClass.LevenshteinDistance("abc", "yabd") == 2);
+        }
+        #endregion
 
+        #region NumberOfWaysToTraverseGraph
+        [Fact]
+        public void NumberOfWaysToTraverseGraphTestCase()
+        {
+            int width = 4;
+            int height = 3;
+            int expected = 10;
+            var actual = new NumberOfWaysToTraverseGraphClass().NumberOfWaysToTraverseGraph(width, height);
+            Assert.True(expected == actual);
+        }
+        #endregion
 
+        #region SingleCycleCheckClass
+        [Fact]
+        public void HasSingleCycleTestCase1()
+        {
+            Assert.True(SingleCycleCheckClass.HasSingleCycle(new int[] { 2, 3, 1, -4, -4, 2 }));
+        }
+        #endregion
 
+        #region BreadthFirstSearch
+        [Fact]
+        public void BreadthFirstSearchTestCase1()
+        {
+            BreadthFirstSearchClass.Node graph = new BreadthFirstSearchClass.Node("A");
+            graph.AddChild("B").AddChild("C").AddChild("D");
+            graph.children[0].AddChild("E").AddChild("F");
+            graph.children[2].AddChild("G").AddChild("H");
+            graph.children[0].children[1].AddChild("I").AddChild("J");
+            graph.children[2].children[0].AddChild("K");
+            string[] expected = {
+              "A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K"
+            };
+            List<string> inputArray = new List<string>();
+            Assert.True(compare(graph.BreadthFirstSearch(inputArray), expected));
+        }
 
+        public static bool compare(List<string> arr1, string[] arr2)
+        {
+            if (arr1.Count != arr2.Length)
+            {
+                return false;
+            }
+            for (int i = 0; i < arr1.Count; i++)
+            {
+                if (!arr1[i].Equals(arr2[i]))
+                {
+                    return false;
+                }
+            }
+            return true;
+        } 
+        #endregion
 
 
 

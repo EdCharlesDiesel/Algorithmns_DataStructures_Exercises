@@ -1394,14 +1394,139 @@
                 }
                 return numOfCoins[n] != Int32.MaxValue ? numOfCoins[n] : -1;
             }
-        } 
+        }
         #endregion
 
+        #region LevenshteinDistance
+        /// <summary>
+        /// 
+        /// </summary>
+        public class LevenshteinDistanceClass
+        {
+            public static int LevenshteinDistance(string str1, string str2)
+            {
+                int[,] edits = new int[str2.Length + 1, str1.Length + 1];
+                for (int i = 0; i < str2.Length + 1; i++)
+                {
+                    for (int j = 0; j < str1.Length + 1; j++)
+                    {
+                        edits[i, j] = j;
+                    }
+                    edits[i, 0] = i;
+                }
+                for (int i = 1; i < str2.Length + 1; i++)
+                {
+                    for (int j = 1; j < str1.Length + 1; j++)
+                    {
+                        if (str2[i - 1] == str1[j - 1])
+                        {
+                            edits[i, j] = edits[i - 1, j - 1];
+                        }
+                        else
+                        {
+                            edits[i,
+                            j] = 1 +
+                            Math.Min(edits[i - 1, j - 1],
+                            Math.Min(edits[i - 1, j],
+                            edits[i, j - 1]));
+                        }
+                    }
+                }
+                return edits[str2.Length, str1.Length];
+            }
+        }
+        #endregion
 
+        #region NumberOfWaysToTraverseGraph
+        /// <summary>
+        /// 
+        /// </summary>
+        public class NumberOfWaysToTraverseGraphClass
+        {
+            public int NumberOfWaysToTraverseGraph(int width, int height)
+            {
+                if (width ==1 || height ==1)
+                {
+                    return 1;
+                }
 
+                return NumberOfWaysToTraverseGraph(width-1, height) +
+                    NumberOfWaysToTraverseGraph(width, height - 1);
+            }
+        }
+        #endregion
 
+        #region SingleCycleCheck
+        /// <summary>
+        /// 
+        /// </summary>
+        public class SingleCycleCheckClass
+        {
+            public static bool HasSingleCycle(int[] array)
+            {
+                int numElementsVisited = 0;
+                int currentIdx = 0;
+                while (numElementsVisited < array.Length)
+                {
+                    if (numElementsVisited > 0 && currentIdx == 0) return false;
+                    numElementsVisited++;
+                    currentIdx = getNextIdx(currentIdx, array);
+                }
+                return currentIdx == 0;
+            }
 
+            public static int getNextIdx(int currentIdx, int[] array)
+            {
+                int jump = array[currentIdx];
+                int nextIdx = (currentIdx + jump) % array.Length;
+                return nextIdx >= 0 ? nextIdx : nextIdx + array.Length;
+            }
+        }
+        #endregion
 
+        #region BreadthFirstSearch
+        /// <summary>
+        /// 
+        /// </summary>
+        public class BreadthFirstSearchClass
+        {
+            // Do not edit the class below except
+            // for the BreadthFirstSearch method.
+            // Feel free to add new properties
+            // and methods to the class.
+            public class Node
+            {
+                public string name;
+                public List<Node> children = new List<Node>();
+
+                public Node(string name)
+                {
+                    this.name = name;
+                }
+
+                public List<string> BreadthFirstSearch(List<string> array)
+                {
+                    Queue<Node> queue = new Queue<Node>();
+                    queue.Enqueue(this);
+
+                    while (queue.Count >0)
+                    {
+                        Node current = queue.Dequeue();
+                        array.Add(current.name);
+                        current.children.ForEach(child => { queue.Enqueue(child); });
+                    }
+                    return array;
+                }
+
+                public Node AddChild(string name)
+                {
+                    Node child = new Node(name);
+                    children.Add(child);
+                    return this;
+                }
+            }
+        } 
+        #endregion
 
 
 
