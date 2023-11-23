@@ -777,10 +777,47 @@ namespace Medium_Algorithms.Tests
                 }
             }
             return true;
-        } 
+        }
         #endregion
 
+        #region AncestralTree
+        public Dictionary<char, AncestralTreeClass.AncestralTree> getNewTrees()
+        {
+            var trees = new Dictionary<char, AncestralTreeClass.AncestralTree>();
+            var alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+            foreach (char a in alphabet)
+            {
+                trees.Add(a, new AncestralTreeClass.AncestralTree(a));
+            }
 
+            trees['A'].AddAsAncestor(new AncestralTreeClass.AncestralTree[] {
+                  trees['B'], trees['C'], trees['D'], trees['E'], trees['F']
+                });
+            return trees;
+        }
+
+        [Fact]
+        public void AncestralTreeClassTestCase1()
+        {
+            var trees = getNewTrees();
+            trees['A'].AddAsAncestor(
+              new AncestralTreeClass.AncestralTree[] { trees['B'], trees['C'] }
+            );
+            trees['B'].AddAsAncestor(
+              new AncestralTreeClass.AncestralTree[] { trees['D'], trees['E'] }
+            );
+            trees['D'].AddAsAncestor(
+              new AncestralTreeClass.AncestralTree[] { trees['H'], trees['I'] }
+            );
+            trees['C'].AddAsAncestor(
+              new AncestralTreeClass.AncestralTree[] { trees['F'], trees['G'] }
+            );
+
+            AncestralTreeClass.AncestralTree yca =
+              AncestralTreeClass.GetYoungestCommonAncestor(trees['A'], trees['E'], trees['I']);
+            Assert.True(yca == trees['B']);
+        } 
+        #endregion
 
 
 
