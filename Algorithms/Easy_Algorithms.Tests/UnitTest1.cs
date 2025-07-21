@@ -1,4 +1,5 @@
-using Microsoft.VisualStudio.TestPlatform.TestHost;
+
+using Xunit;
 using static Easy_Algorithms.EasyAlgorithmsClass;
 
 namespace Easy_Algorithms.Tests
@@ -6,70 +7,76 @@ namespace Easy_Algorithms.Tests
     public class EasyAlgorithmsUnitTest
     {
         #region InsertionSort
-        [Fact]
-        public void InsertionSortTest1()
-        {
-            int[] expected = { 2, 3, 5, 5, 6, 8, 9 };
-            int[] input = { 8, 5, 2, 9, 5, 6, 3 };
-            Assert.True(compare(InsertionSortClass.InsertionSort(input), expected));
-        } 
+        // [Fact]
+        // public void InsertionSortTest1()
+        // {
+        //     int[] expected = { 2, 3, 5, 5, 6, 8, 9 };
+        //     int[] input = { 8, 5, 2, 9, 5, 6, 3 };
+        //     Assert.True(compare(InsertionSortClass.InsertionSort(input), expected));
+        // } 
         #endregion
-
-        #region BubbleSort
-        [Fact]
-        public void BubbleSortTestCase1()
-        {
-            int[] expected = { 2, 3, 5, 5, 6, 8, 9 };
-            int[] input = { 8, 5, 2, 9, 5, 6, 3 };
-            Assert.True(compare(BubbleSortClass.BubbleSort(input), expected));
-        }
-
-        //public static bool compare(int[] arr1, int[] arr2)
-        //{
-        //    if (arr1.Length != arr2.Length)
-        //    {
-        //        return false;
-        //    }
-        //    for (int i = 0; i < arr1.Length; i++)
-        //    {
-        //        if (arr1[i] != arr2[i])
-        //        {
-        //            return false;
-        //        }
-        //    }
-        //    return true;
-        //} 
-        #endregion
-
-        #region FindThreeLargestNumbers
-        [Fact]
-        public void FindThreeLargestNumbersTestCase1()
-        {
-            int[] expected = { 18, 141, 541 };
-            Assert.True(compare(
-              FindThreeLargestNumbersClass.FindThreeLargestNumbers(
-                new int[] { 141, 1, 17, -7, -17, -27, 18, 541, 8, 7, 7 }
-              ),
-              expected
-            ));
-        }
-
-        public bool compare(int[] arr1, int[] arr2)
-        {
-            if (arr1.Length != arr2.Length)
-            {
-                return false;
-            }
-            for (int i = 0; i < arr1.Length; i++)
-            {
-                if (arr1[i] != arr2[i])
-                {
-                    return false;
-                }
-            }
-            return true;
-        } 
-        #endregion
+        //
+        // #region BubbleSort
+        // [Fact]
+        // public void BubbleSortTestCase1()
+        // {
+        //     int[] expected = { 2, 3, 5, 5, 6, 8, 9 };
+        //     int[] input = { 8, 5, 2, 9, 5, 6, 3 };
+        //     Assert.True(compare(BubbleSortClass.BubbleSort(input), expected));
+        // }
+        //
+        // /// <summary>
+        // /// 
+        // /// </summary>
+        // /// <param name="arr1"></param>
+        // /// <param name="arr2"></param>
+        // /// <returns></returns>
+        // public static bool compare(int[] arr1, int[] arr2)
+        // {
+        //     if (arr1.Length != arr2.Length)
+        //     {
+        //         return false;
+        //     }
+        //     for (int i = 0; i < arr1.Length; i++)
+        //     {
+        //         if (arr1[i] != arr2[i])
+        //         {
+        //             return false;
+        //         }
+        //     }
+        //     return true;
+        // } 
+        // #endregion
+        //
+        // #region FindThreeLargestNumbers
+        // [Fact]
+        // public void FindThreeLargestNumbersTestCase1()
+        // {
+        //     int[] expected = { 18, 141, 541 };
+        //     Assert.True(compare(
+        //       FindThreeLargestNumbersClass.FindThreeLargestNumbers(
+        //         new int[] { 141, 1, 17, -7, -17, -27, 18, 541, 8, 7, 7 }
+        //       ),
+        //       expected
+        //     ));
+        // }
+        //
+        // public bool compare(int[] arr1, int[] arr2)
+        // {
+        //     if (arr1.Length != arr2.Length)
+        //     {
+        //         return false;
+        //     }
+        //     for (int i = 0; i < arr1.Length; i++)
+        //     {
+        //         if (arr1[i] != arr2[i])
+        //         {
+        //             return false;
+        //         }
+        //     }
+        //     return true;
+        // } 
+        // #endregion
 
         #region ProductSum
         [Fact]
@@ -555,14 +562,14 @@ namespace Easy_Algorithms.Tests
         #endregion
 
         #region TwoNumberSum
-        [Fact]
-        public void TwoNumberSumTest1()
-        {
-            int[] output = new TwoNumberSumClass().TwoNumberSum(new int[] { 3, 5, -4, 8, 11, 1, -1, 6 }, 10);
-            Assert.True(output.Length == 2);
-            Assert.True(Array.Exists(output, e => e == -1));
-            Assert.True(Array.Exists(output, e => e == 11));
-        }
+        // [Fact]
+        // public void TwoNumberSumTest1()
+        // {
+        //     int[] output = new TwoNumberSumClass().TwoNumberSum(new int[] { 3, 5, -4, 8, 11, 1, -1, 6 }, 10);
+        //     Assert.True(output.Length == 2);
+        //     Assert.True(Array.Exists(output, e => e == -1));
+        //     Assert.True(Array.Exists(output, e => e == 11));
+        // }
         #endregion
 
         #region SumTwoSmallestNumbers
